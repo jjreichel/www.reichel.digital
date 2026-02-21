@@ -703,6 +703,75 @@
         .lang-block.active {
             display: block;
         }
+
+        /* Portrait */
+        .portrait-img {
+            width: 100%;
+            border-radius: 1.2rem;
+            object-fit: cover;
+            object-position: 50% 15%;
+            aspect-ratio: 1 / 1;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+            display: block;
+        }
+
+        .portrait-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: 50% 15%;
+            border: 1.5px solid rgba(243, 179, 64, 0.7);
+            flex-shrink: 0;
+        }
+
+        /* Karten-Hover */
+        .card {
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 55px rgba(0, 0, 0, 0.78);
+        }
+
+        /* Sanftes Scrollen */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Trennlinie zwischen Sections */
+        .section + .section {
+            border-top: 1px solid rgba(55, 65, 81, 0.35);
+        }
+
+        /* Mobile Nav – aufgeklappter Zustand */
+        @media (max-width: 768px) {
+            .nav {
+                position: relative;
+            }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.65rem;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 100%;
+                padding: 0.85rem 1.25rem 1.1rem;
+                background: rgba(5, 8, 22, 0.98);
+                border-bottom: 1px solid rgba(55, 65, 81, 0.7);
+                backdrop-filter: blur(18px);
+                z-index: 30;
+            }
+
+            .nav-toggle {
+                cursor: pointer;
+                user-select: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -722,9 +791,7 @@
                     <a href="#about-de">Profil</a>
                     <a href="#sailing-de">Ketch&nbsp;Viking</a>
                     <a href="#contact-de">Kontakt</a>
-                    <button class="nav-cta" onclick="document.getElementById('contact-de').scrollIntoView({behavior:'smooth'})">
-                        Unverbindlich sprechen
-                    </button>
+                    <a href="#contact-de" class="nav-cta">Unverbindlich sprechen</a>
                 </nav>
                 <div class="nav-lang-switcher">
     			<button class="active" onclick="setLanguage('de')">DE</button>
@@ -775,7 +842,8 @@
 
                     <aside class="hero-panel" aria-label="Kurzprofil & Kennzahlen">
                         <div class="hero-panel-header">
-                            <div>
+                            <div style="display:flex;align-items:center;gap:0.65rem;">
+                                <img src="portrait.jpg" alt="Joachim J. Reichel" class="portrait-avatar" />
                                 <div class="hero-panel-title">Kurzer Kompass</div>
                             </div>
                             <div class="hero-panel-chip">CIO · Berater · Skipper</div>
@@ -963,7 +1031,8 @@
                     </div>
 
                     <aside>
-                        <div class="pill-block">
+                        <img src="portrait.jpg" alt="Joachim J. Reichel – CIO & IT-Strategieberater" class="portrait-img" loading="lazy" />
+                        <div class="pill-block" style="margin-top:1rem;">
                             <p style="margin-bottom:0.6rem;"><strong>Stichworte in Kurzform</strong></p>
                             <ul class="card-list">
                                 <li>Langjährige Erfahrung als CIO und IT-Verantwortlicher</li>
@@ -1096,9 +1165,7 @@
                     <a href="#about-en">Profile</a>
                     <a href="#sailing-en">Ketch&nbsp;Viking</a>
                     <a href="#contact-en">Contact</a>
-                    <button class="nav-cta" onclick="document.getElementById('contact-en').scrollIntoView({behavior:'smooth'})">
-                        Schedule a call
-                    </button>
+                    <a href="#contact-en" class="nav-cta">Schedule a call</a>
                 </nav>
                 <div class="nav-lang-switcher">
     			<button onclick="setLanguage('de')">DE</button>
@@ -1149,7 +1216,8 @@
 
                     <aside class="hero-panel" aria-label="Profile & key topics">
                         <div class="hero-panel-header">
-                            <div>
+                            <div style="display:flex;align-items:center;gap:0.65rem;">
+                                <img src="portrait.jpg" alt="Joachim J. Reichel" class="portrait-avatar" />
                                 <div class="hero-panel-title">Quick compass</div>
                             </div>
                             <div class="hero-panel-chip">CIO · Advisor · Skipper</div>
@@ -1337,7 +1405,8 @@
                     </div>
 
                     <aside>
-                        <div class="pill-block">
+                        <img src="portrait.jpg" alt="Joachim J. Reichel – CIO & IT Strategy Advisor" class="portrait-img" loading="lazy" />
+                        <div class="pill-block" style="margin-top:1rem;">
                             <p style="margin-bottom:0.6rem;"><strong>Key points at a glance</strong></p>
                             <ul class="card-list">
                                 <li>Many years of experience as CIO and IT leader</li>
@@ -1469,9 +1538,7 @@
                     <a href="#about-es">Perfil</a>
                     <a href="#sailing-es">Ketch&nbsp;Viking</a>
                     <a href="#contact-es">Contacto</a>
-                    <button class="nav-cta" onclick="document.getElementById('contact-es').scrollIntoView({behavior:'smooth'})">
-                        Solicitar llamada
-                    </button>
+                    <a href="#contact-es" class="nav-cta">Solicitar llamada</a>
                 </nav>
                 <div class="nav-lang-switcher">
                     <button onclick="setLanguage('de')">DE</button>
@@ -1522,7 +1589,10 @@
 
                     <aside class="hero-panel">
                         <div class="hero-panel-header">
-                            <div class="hero-panel-title">Brújula rápida</div>
+                            <div style="display:flex;align-items:center;gap:0.65rem;">
+                                <img src="portrait.jpg" alt="Joachim J. Reichel" class="portrait-avatar" />
+                                <div class="hero-panel-title">Brújula rápida</div>
+                            </div>
                             <div class="hero-panel-chip">CIO · Asesor · Skipper</div>
                         </div>
 
@@ -1706,7 +1776,8 @@
                     </div>
 
                     <aside>
-                        <div class="pill-block">
+                        <img src="portrait.jpg" alt="Joachim J. Reichel – CIO & Asesor de Estrategia TI" class="portrait-img" loading="lazy" />
+                        <div class="pill-block" style="margin-top:1rem;">
                             <p><strong>Puntos clave</strong></p>
                             <ul class="card-list">
                                 <li>Amplia experiencia como CIO y líder TI</li>
@@ -1830,32 +1901,48 @@
     </div>
 </div>
 <script>
-    // Jahr in beiden Footern setzen
+    // Jahr in allen Footern setzen
     document.querySelectorAll('.year').forEach(el => {
         el.textContent = new Date().getFullYear();
     });
 
     function setLanguage(lang) {
-    const blocks = ['de', 'en', 'es'];
+        const blocks = ['de', 'en', 'es'];
 
-    blocks.forEach(code => {
-        const el = document.getElementById('lang-' + code);
-        if (el) el.classList.remove('active');
+        blocks.forEach(code => {
+            const el = document.getElementById('lang-' + code);
+            if (el) el.classList.remove('active');
+        });
+
+        const activeBlock = document.getElementById('lang-' + lang);
+        if (activeBlock) activeBlock.classList.add('active');
+
+        // Buttons visuell umschalten
+        document.querySelectorAll('.nav-lang-switcher button').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.trim() === lang.toUpperCase()) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Offene mobile Navs schließen
+        document.querySelectorAll('.nav-links').forEach(nl => nl.classList.remove('open'));
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile Navigation
+    document.querySelectorAll('.nav-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const navLinks = toggle.closest('.nav').querySelector('.nav-links');
+            if (navLinks) navLinks.classList.toggle('open');
+        });
     });
 
-    const activeBlock = document.getElementById('lang-' + lang);
-    if (activeBlock) activeBlock.classList.add('active');
-
-    // Buttons visuell umschalten
-    document.querySelectorAll('.nav-lang-switcher button').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.trim() === lang.toUpperCase()) {
-            btn.classList.add('active');
-        }
-    });
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    // Browsersprache erkennen, Fallback Deutsch
+    const browserLang = (navigator.language || '').split('-')[0].toLowerCase();
+    const supported = ['de', 'en', 'es'];
+    setLanguage(supported.includes(browserLang) ? browserLang : 'de');
 </script>
 </body>
 </html>
