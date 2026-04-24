@@ -1,1948 +1,876 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Joachim J. Reichel – CIO & IT-Strategieberater</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Joachim J. Reichel – CIO, IT-Strategieberater und Skipper. IT-Restrukturierung, SAP-Harmonisierung, Daten- & Governance-Architektur – pragmatisch, klar, umsetzbar.">
-    <style>
-        :root {
-            --bg: #050816;
-            --bg-alt: #0d1020;
-            --accent: #f3b340;
-            --accent-soft: rgba(243, 179, 64, 0.12);
-            --text: #f5f5f5;
-            --muted: #9ca3af;
-            --border: #1f2933;
-            --danger: #f97373;
-            --max-width: 1100px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #1f2937 0, #050816 55%);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            border-bottom: 1px solid rgba(55, 65, 81, 0.7);
-            backdrop-filter: blur(18px);
-            background: linear-gradient(to right, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.88));
-            position: sticky;
-            top: 0;
-            z-index: 20;
-        }
-
-        .nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-        }
-
-        .brand {
-            display: flex;
-            flex-direction: column;
-            gap: 0.1rem;
-        }
-
-        .brand-title {
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-
-        .brand-sub {
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            position: relative;
-            padding-bottom: 0.1rem;
-            color: var(--muted);
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -0.15rem;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--accent), #f97373);
-            transition: width 0.22s ease-out;
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            font-size: 0.85rem;
-            padding: 0.4rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid rgba(243, 179, 64, 0.7);
-            background: radial-gradient(circle at top left, rgba(243, 179, 64, 0.18), transparent 60%);
-            cursor: pointer;
-            transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.15s ease-out;
-            white-space: nowrap;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-            background: radial-gradient(circle at top left, rgba(243, 179, 64, 0.27), transparent 60%);
-        }
-
-        .nav-toggle {
-            display: none;
-        }
-
-        /* Sprachumschalter oben rechts */
-        .nav-lang-switcher {
-            display: flex;
-            gap: 0.4rem;
-            font-size: 0.78rem;
-            align-items: center;
-        }
-
-        .nav-lang-switcher button {
-            background: transparent;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            color: var(--muted);
-            padding: 0.2rem 0.7rem;
-            cursor: pointer;
-            transition: all 0.15s ease-out;
-        }
-
-        .nav-lang-switcher button:hover {
-            border-color: var(--accent);
-            color: var(--text);
-        }
-
-        .nav-lang-switcher button.active {
-            border-color: rgba(243, 179, 64, 0.9);
-            color: var(--accent);
-            background: radial-gradient(circle at top left, rgba(243, 179, 64, 0.16), transparent 60%);
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .section {
-            padding: 4.5rem 1.5rem;
-        }
-
-        .section-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        /* Hero */
-        .hero {
-            padding-top: 3.5rem;
-            padding-bottom: 4.5rem;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-title {
-            font-size: clamp(2.1rem, 4vw, 2.8rem);
-            font-weight: 650;
-            letter-spacing: 0.02em;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-highlight {
-            background: linear-gradient(120deg, var(--accent), #f97373);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero-sub {
-            font-size: 0.98rem;
-            color: var(--muted);
-            max-width: 30rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            background: rgba(15, 23, 42, 0.7);
-            color: var(--muted);
-        }
-
-        .badge-strong {
-            border-color: rgba(243, 179, 64, 0.8);
-            background: rgba(15, 23, 42, 0.9);
-            color: var(--accent);
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .btn {
-            border-radius: 999px;
-            padding: 0.7rem 1.4rem;
-            font-size: 0.9rem;
-            border: 1px solid transparent;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.15s ease-out, border-color 0.15s ease-out;
-        }
-
-        .btn-primary {
-            background: linear-gradient(to right, var(--accent), #f97373);
-            color: #111827;
-            font-weight: 600;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-        }
-
-        .btn-ghost {
-            border-color: rgba(148, 163, 184, 0.6);
-            color: var(--muted);
-            background: rgba(15, 23, 42, 0.75);
-        }
-
-        .btn-ghost:hover {
-            border-color: rgba(243, 179, 64, 0.7);
-            color: var(--text);
-            background: rgba(15, 23, 42, 0.95);
-        }
-
-        .btn span.icon {
-            font-size: 1.05rem;
-            line-height: 1;
-        }
-
-        .hero-meta {
-            margin-top: 1.25rem;
-            font-size: 0.8rem;
-            color: var(--muted);
-        }
-
-        .hero-meta strong {
-            color: var(--accent);
-        }
-
-        .hero-panel {
-            border-radius: 1.5rem;
-            padding: 1.6rem 1.6rem 1.4rem;
-            background: radial-gradient(circle at top left, rgba(243, 179, 64, 0.12), transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(79, 70, 229, 0.32), rgba(15, 23, 42, 0.98));
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-panel::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 60%);
-            mix-blend-mode: soft-light;
-            pointer-events: none;
-        }
-
-        .hero-panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-panel-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--muted);
-        }
-
-        .hero-panel-chip {
-            font-size: 0.68rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            background: rgba(15, 23, 42, 0.85);
-        }
-
-        .hero-panel-body {
-            position: relative;
-            z-index: 1;
-        }
-
-        .metric-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.3rem;
-        }
-
-        .metric {
-            padding: 0.65rem 0.8rem;
-            border-radius: 0.85rem;
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            background: rgba(15, 23, 42, 0.9);
-        }
-
-        .metric-label {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-bottom: 0.1rem;
-        }
-
-        .metric-value {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .metric-value span {
-            font-size: 0.72rem;
-            font-weight: 400;
-            color: var(--muted);
-            margin-left: 0.25rem;
-        }
-
-        .metric-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            margin-top: 0.3rem;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 999px;
-            background: rgba(34, 197, 94, 0.13);
-            color: #bbf7d0;
-        }
-
-        .metric-pill .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: #22c55e;
-        }
-
-        .hero-panel-footer {
-            font-size: 0.78rem;
-            color: var(--muted);
-            border-top: 1px dashed rgba(148, 163, 184, 0.5);
-            padding-top: 0.75rem;
-        }
-
-        .hero-panel-footer strong {
-            color: var(--accent);
-        }
-
-        /* Section titles */
-
-        .section-header {
-            margin-bottom: 2.2rem;
-        }
-
-        .section-kicker {
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 0.3rem;
-        }
-
-        .section-title {
-            font-size: 1.45rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-
-        .section-sub {
-            font-size: 0.9rem;
-            color: var(--muted);
-            max-width: 36rem;
-        }
-
-        /* Services */
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            border-radius: 1.1rem;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(5, 8, 22, 0.98));
-            padding: 1.25rem 1.3rem;
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--muted);
-            margin-bottom: 0.4rem;
-        }
-
-        .card-title {
-            font-size: 1rem;
-            font-weight: 550;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-body {
-            font-size: 0.88rem;
-            color: var(--muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .card-list {
-            list-style: none;
-            font-size: 0.82rem;
-            color: var(--muted);
-        }
-
-        .card-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.4rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .card-list li::before {
-            content: "•";
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-top: 0.12rem;
-        }
-
-        /* Two-column */
-
-        .two-col {
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        .pill-block {
-            border-radius: 1rem;
-            padding: 1rem 1.1rem;
-            background: radial-gradient(circle at top left, rgba(243, 179, 64, 0.08), rgba(15, 23, 42, 0.98));
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            font-size: 0.86rem;
-            color: var(--muted);
-        }
-
-        .pill-block strong {
-            color: var(--text);
-        }
-
-        .pill-inline {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.73rem;
-            padding: 0.18rem 0.55rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            margin-right: 0.4rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .pill-inline span.dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 999px;
-            background: var(--accent);
-        }
-
-        .muted-inline {
-            font-size: 0.82rem;
-            color: var(--muted);
-            margin-top: 0.75rem;
-        }
-
-        /* Sailing */
-
-        .sailing-card {
-            border-radius: 1.2rem;
-            padding: 1.25rem 1.3rem;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            background: radial-gradient(circle at top, rgba(17, 24, 39, 0.95), rgba(5, 8, 22, 1));
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .sailing-title {
-            font-size: 1rem;
-            font-weight: 550;
-            margin-bottom: 0.3rem;
-        }
-
-        .sailing-meta {
-            font-size: 0.8rem;
-            margin-bottom: 0.75rem;
-            color: var(--muted);
-        }
-
-        .sailing-list {
-            list-style: none;
-            margin-top: 0.5rem;
-            font-size: 0.82rem;
-        }
-
-        .sailing-list li {
-            margin-bottom: 0.3rem;
-        }
-
-        /* Contact */
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 2.2fr) minmax(0, 2fr);
-            gap: 2rem;
-        }
-
-        .contact-box {
-            border-radius: 1.1rem;
-            padding: 1.25rem 1.3rem;
-            background: radial-gradient(circle at top left, rgba(243, 179, 64, 0.06), rgba(15, 23, 42, 0.98));
-            border: 1px solid rgba(55, 65, 81, 0.9);
-        }
-
-        .contact-box p {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 1rem;
-        }
-
-        .contact-item {
-            font-size: 0.86rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .contact-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--muted);
-        }
-
-        .contact-value {
-            font-size: 0.9rem;
-        }
-
-        .contact-value a {
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-decoration-color: rgba(148, 163, 184, 0.8);
-        }
-
-        footer {
-            border-top: 1px solid rgba(31, 41, 55, 0.9);
-            padding: 1.2rem 1.5rem 1.5rem;
-            font-size: 0.78rem;
-            color: var(--muted);
-        }
-
-        .footer-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 0.9rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-decoration-color: rgba(148, 163, 184, 0.7);
-        }
-
-        /* Responsive */
-
-        @media (max-width: 900px) {
-            .hero-grid,
-            .two-col,
-            .cards-grid,
-            .contact-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .cards-grid {
-                gap: 1.1rem;
-            }
-
-            .hero {
-                padding-top: 2.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav {
-                padding-inline: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: block;
-                font-size: 1.3rem;
-                cursor: default;
-                color: var(--muted);
-            }
-
-            .hero {
-                padding-inline: 1.1rem;
-            }
-
-            .section {
-                padding-inline: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-actions {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .hero-panel {
-                margin-top: 1rem;
-            }
-        }
-
-        /* Sprachcontainer */
-        .lang-block {
-            display: none;
-        }
-        .lang-block.active {
-            display: block;
-        }
-
-        /* Portrait */
-        .portrait-img {
-            width: 100%;
-            border-radius: 1.2rem;
-            object-fit: cover;
-            object-position: 50% 15%;
-            aspect-ratio: 1 / 1;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
-            display: block;
-        }
-
-        .portrait-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: 50% 15%;
-            border: 1.5px solid rgba(243, 179, 64, 0.7);
-            flex-shrink: 0;
-        }
-
-        /* Karten-Hover */
-        .card {
-            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 55px rgba(0, 0, 0, 0.78);
-        }
-
-        /* Sanftes Scrollen */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Trennlinie zwischen Sections */
-        .section + .section {
-            border-top: 1px solid rgba(55, 65, 81, 0.35);
-        }
-
-        /* Mobile Nav – aufgeklappter Zustand */
-        @media (max-width: 768px) {
-            .nav {
-                position: relative;
-            }
-
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.65rem;
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 100%;
-                padding: 0.85rem 1.25rem 1.1rem;
-                background: rgba(5, 8, 22, 0.98);
-                border-bottom: 1px solid rgba(55, 65, 81, 0.7);
-                backdrop-filter: blur(18px);
-                z-index: 30;
-            }
-
-            .nav-toggle {
-                cursor: pointer;
-                user-select: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<title>Joachim J. Reichel — CIO & IT-Strategieberater</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Joachim J. Reichel — CIO und IT-Strategieberater für Industrie und Mittelstand. IT-Restrukturierung, SAP-Harmonisierung, Daten & Governance. Pragmatisch, klar, umsetzbar." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- DEUTSCH -->
-<div id="lang-de" class="lang-block active">
-    <div class="page">
-        <header>
-            <div class="nav">
-                <div class="brand">
-                    <div class="brand-title">Joachim&nbsp;J.&nbsp;Reichel</div>
-                    <div class="brand-sub">CIO · IT-Strategieberater · Skipper</div>
-                </div>
-                <nav class="nav-links">
-                    <a href="#services-de">Leistungen</a>
-                    <a href="#projects-de">Projekte</a>
-                    <a href="#about-de">Profil</a>
-                    <a href="#sailing-de">Ketch&nbsp;Viking</a>
-                    <a href="#contact-de">Kontakt</a>
-                    <a href="#contact-de" class="nav-cta">Unverbindlich sprechen</a>
-                </nav>
-                <div class="nav-lang-switcher">
-    			<button class="active" onclick="setLanguage('de')">DE</button>
-  			<button onclick="setLanguage('en')">EN</button>
-   			<button onclick="setLanguage('es')">ES</button>
-		</div>
-                <div class="nav-toggle">☰</div>
-            </div>
-        </header>
+<!-- ==================== DE ==================== -->
+<div id="lang-de" class="lang active" data-screen-label="DE">
 
-        <main>
-            <!-- HERO -->
-            <section class="hero section" id="home-de">
-                <div class="section-inner hero-grid">
-                    <div>
-                        <div class="eyebrow">IT im Griff statt im Nebel</div>
-                        <h1 class="hero-title">
-                            IT-Strukturen ordnen, <span class="hero-highlight">Komplexität entwirren</span>, Unternehmen auf Kurs bringen.
-                        </h1>
-                        <p class="hero-sub">
-                            Ich begleite Industrieunternehmen und Mittelstand als CIO und Strategieberater – von wild gewachsenen
-                            SAP-Landschaften bis zur klaren Daten- &amp; Governance-Architektur. Pragmatismus statt PowerPoint-Theater.
-                        </p>
-
-                        <div class="hero-badges">
-                            <span class="badge badge-strong">CIO &amp; Unternehmensberater</span>
-                            <span class="badge">IT-Restrukturierung &amp; Carve-outs</span>
-                            <span class="badge">SAP- und Systemlandschaften harmonisieren</span>
-                            <span class="badge">Daten- &amp; Governance-Strukturen</span>
-                        </div>
-
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="document.getElementById('contact-de').scrollIntoView({behavior:'smooth'})">
-                                <span class="icon">➜</span>
-                                Gespräch anfragen
-                            </button>
-                            <button class="btn btn-ghost" onclick="document.getElementById('projects-de').scrollIntoView({behavior:'smooth'})">
-                                <span class="icon">⛵</span>
-                                Projekte &amp; Arbeitsweise ansehen
-                            </button>
-                        </div>
-
-                        <div class="hero-meta">
-                            <strong>Bottom line:</strong> Ich übersetze IT-Komplexität in klare Entscheidungen – und sorge dafür,
-                            dass sie in der Realität tragen, nicht nur in Slides.
-                        </div>
-                    </div>
-
-                    <aside class="hero-panel" aria-label="Kurzprofil & Kennzahlen">
-                        <div class="hero-panel-header">
-                            <div style="display:flex;align-items:center;gap:0.65rem;">
-                                <img src="portrait.jpg" alt="Joachim J. Reichel" class="portrait-avatar" />
-                                <div class="hero-panel-title">Kurzer Kompass</div>
-                            </div>
-                            <div class="hero-panel-chip">CIO · Berater · Skipper</div>
-                        </div>
-                        <div class="hero-panel-body">
-                            <div class="metric-grid">
-                                <div class="metric">
-                                    <div class="metric-label">Fokus</div>
-                                    <div class="metric-value">IT-Restrukturierung</div>
-                                    <div class="metric-pill">
-                                        <span class="dot"></span>
-                                        <span>Vom Audit zur Umsetzung</span>
-                                    </div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-label">Kontext</div>
-                                    <div class="metric-value">Industrie &amp; Mittelstand</div>
-                                    <div class="metric-pill">
-                                        <span class="dot"></span>
-                                        <span>Praxisnah, nicht akademisch</span>
-                                    </div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-label">Typische Themen</div>
-                                    <div class="metric-value">SAP, Master Data<span>&amp; Governance</span></div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-label">Arbeitsweise</div>
-                                    <div class="metric-value">klar · direkt · ruhig</div>
-                                </div>
-                            </div>
-                            <div class="hero-panel-footer">
-                                Wie auf See: Kurs, Wind und Schiff müssen zusammenpassen. In Unternehmen heißt das:
-                                <strong>Strategie, Organisation, IT &amp; Menschen</strong> arbeiten in dieselbe Richtung – nicht gegeneinander.
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- SERVICES -->
-            <section class="section" id="services-de">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Leistungen</div>
-                        <h2 class="section-title">Was ich für Unternehmen löse</h2>
-                        <p class="section-sub">
-                            Ich steige dort ein, wo gewachsene IT-Strukturen, Altlasten und Silos Entscheidungen blockieren. Ziel:
-                            Ruhe ins System bringen, ohne den Betrieb zu gefährden – und eine Struktur aufbauen, die trägt.
-                        </p>
-                    </div>
-
-                    <div class="cards-grid">
-                        <article class="card">
-                            <div class="card-tag">Modul 1</div>
-                            <h3 class="card-title">IT-Assessment &amp; Zielbild</h3>
-                            <p class="card-body">
-                                Schonungsloser, aber konstruktiver Blick auf Ihre IT-Landschaft – inklusive klarer Roadmap,
-                                was bleiben, was verschwinden und was neu aufgebaut werden muss.
-                            </p>
-                            <ul class="card-list">
-                                <li>Bestandsaufnahme von Systemen, Prozessen und Governance</li>
-                                <li>Risiken, technische Schulden &amp; Engpässe sichtbar machen</li>
-                                <li>Konkretes Zielbild &amp; Maßnahmenplan in verständlicher Sprache</li>
-                            </ul>
-                        </article>
-
-                        <article class="card">
-                            <div class="card-tag">Modul 2</div>
-                            <h3 class="card-title">SAP- &amp; Systemlandschaften ordnen</h3>
-                            <p class="card-body">
-                                Wenn mehrere SAP-Systeme, Workarounds und Excel-Universen nebeneinander existieren, schmilzt
-                                jede Governance dahin. Hier sorge ich für Ordnung.
-                            </p>
-                            <ul class="card-list">
-                                <li>Harmonisierung von SAP-Instanzen &amp; Kernprozessen</li>
-                                <li>Standardisierung von Master Data &amp; Stammdaten-Governance</li>
-                                <li>Vorbereitung auf Carve-outs, M&amp;A oder Reorganisationen</li>
-                            </ul>
-                        </article>
-
-                        <article class="card">
-                            <div class="card-tag">Modul 3</div>
-                            <h3 class="card-title">Interim-CIO &amp; Sparringspartner</h3>
-                            <p class="card-body">
-                                Neutraler Blick von außen, ohne interne Lager. Ich übersetze zwischen Vorstand, Fachbereich,
-                                IT und Betriebsrat – und halte dabei den Kurs.
-                            </p>
-                            <ul class="card-list">
-                                <li>Temporäre CIO-Rolle oder Co-Pilot für bestehende CIOs</li>
-                                <li>Entscheidungsvorlagen und klare Optionen für Vorstand &amp; Beirat</li>
-                                <li>Begleitung kritischer Programme &amp; Transformationen</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PROJECTS -->
-            <section class="section" id="projects-de">
-                <div class="section-inner two-col">
-                    <div>
-                        <div class="section-header">
-                            <div class="section-kicker">Projekte</div>
-                            <h2 class="section-title">Ausgewählte Aufgaben &amp; Wirkung</h2>
-                            <p class="section-sub">
-                                Details sind meist vertraulich. Was sich aber zeigen lässt: typische Muster, in denen ich
-                                arbeite – und wie aus IT-Baustellen wieder steuerbare Systeme werden.
-                            </p>
-                        </div>
-
-                        <div class="pill-block">
-                            <p style="margin-bottom:0.7rem;">
-                                <strong>Beispiele für Einsätze:</strong>
-                            </p>
-                            <ul class="card-list">
-                                <li>IT-Assessment in einem internationalen Industrieunternehmen mit mehreren SAP-Installationen</li>
-                                <li>Entwurf einer standardisierten SAP- und Prozesslandschaft für eine heterogene Unternehmensgruppe</li>
-                                <li>Aufbau von Master-Data-Governance über mehrere Standorte hinweg</li>
-                                <li>Begleitung eines Carve-outs mit Fokus auf IT-Schnittstellen und Betriebsfähigkeit</li>
-                            </ul>
-                            <p class="muted-inline">
-                                Ergebnis in all diesen Fällen: weniger Komplexität, klarere Verantwortlichkeiten und Entscheidungen,
-                                die nicht bei PowerPoint stehen bleiben.
-                            </p>
-                        </div>
-                    </div>
-
-                    <aside>
-                        <div class="pill-block">
-                            <p style="margin-bottom:0.6rem;"><strong>Wie ich arbeite</strong></p>
-                            <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.7rem;">
-                                Ich bringe die Ruhe eines Skippers in stürmischer See mit: keine Hektik, keine Show, sondern
-                                klare Lagebilder, verständliche Optionen und konsequente Priorisierung.
-                            </p>
-                            <div style="margin-bottom:0.5rem;">
-                                <span class="pill-inline">
-                                    <span class="dot"></span>
-                                    <span>radikal ehrlich, aber loyal</span>
-                                </span>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>
-                                    <span>Strategie &amp; Umsetzung zusammengedacht</span>
-                                </span>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>
-                                    <span>hands-on, kein Folienzirkus</span>
-                                </span>
-                            </div>
-                            <p class="muted-inline">
-                                Wenn es hilfreich ist, arbeite ich auch eng mit bestehenden Beratungen oder internen Teams
-                                zusammen – als ruhiger Gegenpol, der Komplexität runterbricht.
-                            </p>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- ABOUT -->
-            <section class="section" id="about-de">
-                <div class="section-inner two-col">
-                    <div>
-                        <div class="section-header">
-                            <div class="section-kicker">Profil</div>
-                            <h2 class="section-title">Wer hinter dem Kompass steht</h2>
-                            <p class="section-sub">
-                                CIO, IT-Strategieberater und Skipper – drei Rollen, ein Muster: Systeme verstehen, Muster erkennen,
-                                Kurs setzen und dafür sorgen, dass alle an Bord mitziehen.
-                            </p>
-                        </div>
-
-                        <p style="font-size:0.92rem; color:var(--muted); margin-bottom:0.8rem;">
-                            Ich habe sowohl auf der Seite internationaler Konzerne als auch in der Beratung gearbeitet.
-                            Ich kenne Vorstandsetagen, Werksgelände und Maschinenräume – und weiß, dass PowerPoint-Folien allein
-                            weder eine IT noch ein Schiff nach Hause bringen.
-                        </p>
-                        <p style="font-size:0.92rem; color:var(--muted); margin-bottom:0.8rem;">
-                            Meine Stärke ist es, technische, organisatorische und menschliche Aspekte zusammenzubringen:
-                            Wer hat welche Interessen? Wo sitzt die eigentliche Blockade? Welche Entscheidung bringt wirklich Entlastung?
-                        </p>
-                        <p style="font-size:0.92rem; color:var(--muted);">
-                            Im Idealfall verlassen Sie ein gemeinsames Projekt mit: klarer IT-Landkarte, weniger Komplexität,
-                            mehr Entscheidungsfähigkeit – und einem Team, das versteht, warum es diesen Kurs mitgeht.
-                        </p>
-                    </div>
-
-                    <aside>
-                        <img src="portrait.jpg" alt="Joachim J. Reichel – CIO & IT-Strategieberater" class="portrait-img" loading="lazy" />
-                        <div class="pill-block" style="margin-top:1rem;">
-                            <p style="margin-bottom:0.6rem;"><strong>Stichworte in Kurzform</strong></p>
-                            <ul class="card-list">
-                                <li>Langjährige Erfahrung als CIO und IT-Verantwortlicher</li>
-                                <li>Fokus auf Industrieunternehmen &amp; produzierendes Gewerbe</li>
-                                <li>Expertise in SAP-Landschaften, Master Data und Governance</li>
-                                <li>Erfahrung mit Restrukturierung, Carve-outs und Transformationen</li>
-                                <li>Skipper &amp; Eigner der Ketch „Viking“ – Führung unter echten Wetterbedingungen</li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- SAILING -->
-            <section class="section" id="sailing-de">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Ketch Viking</div>
-                        <h2 class="section-title">Segeln als Führungs- &amp; Systemmetapher</h2>
-                        <p class="section-sub">
-                            Auf See zeigt sich im Zeitraffer, was in Unternehmen oft Jahre braucht: kleine Fehler in Struktur,
-                            Kommunikation oder Verantwortung werden bei schlechtem Wetter sofort sichtbar.
-                        </p>
-                    </div>
-
-                    <div class="sailing-card">
-                        <h3 class="sailing-title">Was das Segeln mit IT-Restrukturierung zu tun hat</h3>
-                        <p class="sailing-meta">
-                            Ketch „Viking“ · Langfahrttauglich · Viele Seemeilen unter verschiedensten Bedingungen
-                        </p>
-                        <p>
-                            Ein Schiff ist ein komplexes System: Technik, Crew, Wetter, Navigation, Material. Kein Bereich
-                            funktioniert isoliert, alles hängt ineinander. In IT-Landschaften ist es nicht anders.
-                        </p>
-                        <ul class="sailing-list">
-                            <li><strong>Klarer Kurs statt Aktionismus:</strong> Erst Kurs &amp; Lage klären, dann Manöver.</li>
-                            <li><strong>Redundanz &amp; Robustheit:</strong> Systeme so bauen, dass sie Fehler verzeihen.</li>
-                            <li><strong>Rollen &amp; Verantwortung:</strong> Wer macht was, wenn es ernst wird?</li>
-                            <li><strong>Kommunikation:</strong> Klare, knappe Ansagen – ohne Drama, ohne Beschönigung.</li>
-                        </ul>
-                        <p style="margin-top:0.7rem;">
-                            Ich nutze diese Metaphern gerne in Workshops und Vorständen, weil sie Komplexität ent-emotionalisieren
-                            und greifbar machen, ohne sie zu verharmlosen.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CONTACT -->
-            <section class="section" id="contact-de">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Kontakt</div>
-                        <h2 class="section-title">Lassen Sie uns Ihre Lagekarte zeichnen</h2>
-                        <p class="section-sub">
-                            Ob erstes Sparring, Zweitmeinung zu einer Strategie oder Begleitung eines konkreten Programms:
-                            Ein kurzes, fokussiertes Gespräch reicht meist, um zu sehen, ob und wie ich helfen kann.
-                        </p>
-                    </div>
-
-                    <div class="contact-grid">
-                        <div class="contact-box">
-                            <p>
-                                Schreiben Sie mir mit ein paar Stichworten zu Ihrer Situation – idealerweise:
-                                Unternehmensgröße, Branche, aktuelle Herausforderungen und Zeithorizont.
-                            </p>
-                            <div class="contact-item">
-                                <div class="contact-label">E-Mail</div>
-                                <div class="contact-value">
-                                    <a href="mailto:joachim@reichel.digital">joachim@reichel.digital</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-label">LinkedIn</div>
-                                <div class="contact-value">
-                                    <a href="https://www.linkedin.com/in/j-j-r/" target="_blank" rel="noopener">Profil auf LinkedIn</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-label">Format</div>
-                                <div class="contact-value">
-                                    Kurzes Videogespräch oder Telefonat – je nachdem, was für Sie angenehmer ist.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contact-box">
-                            <p style="margin-bottom:0.6rem;"><strong>Vorschlag für ein erstes Gespräch (30–45 Minuten):</strong></p>
-                            <ul class="card-list">
-                                <li>Kurze Einordnung Ihrer aktuellen IT- und Organisationslage</li>
-                                <li>Benennung der größten Hebel &amp; Risiken aus meiner Sicht</li>
-                                <li>Skizze, wie ein pragmatisches Vorgehen aussehen könnte</li>
-                                <li>Transparenz: Wo ich helfen kann – und wo nicht</li>
-                            </ul>
-                            <p class="muted-inline">
-                                Keine Verkaufsshow, keine Folien. Nur ein ehrlicher Blick auf Ihre Situation und ein Vorschlag,
-                                wie Sie weiter vorgehen können – mit oder ohne mich.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="footer-inner">
-                <div>© <span class="year"></span> Joachim J. Reichel · Alle Rechte vorbehalten.</div>
-                <div class="footer-links">
-                    <a href="#home-de">Zum Seitenanfang</a>
-                    <a href="#services-de">Leistungen</a>
-                    <a href="#contact-de">Kontakt</a>
-                </div>
-            </div>
-        </footer>
+<header class="site-header">
+  <div class="nav">
+    <a href="#top-de" class="brand" aria-label="Joachim J. Reichel">
+      <span class="brand-mark">JJR</span>
+      <span>
+        <span class="brand-name">Joachim J. Reichel</span>
+        <span class="brand-role">CIO · IT-Strategieberater</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services-de">Leistungen</a>
+      <a href="#approach-de">Arbeitsweise</a>
+      <a href="#about-de">Profil</a>
+      <a href="#sailing-de">Viking</a>
+      <a href="#contact-de">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <button class="on" data-lang="de">DE</button><span class="sep">/</span>
+        <button data-lang="en">EN</button><span class="sep">/</span>
+        <button data-lang="es">ES</button>
+      </div>
+      <a href="#contact-de" class="nav-cta">Gespräch anfragen</a>
+      <button class="nav-toggle" aria-label="Menü">☰</button>
     </div>
+  </div>
+</header>
+
+<main id="top-de">
+
+  <section class="hero">
+    <div class="inner hero-grid">
+      <div>
+        <div class="kicker">Est. Praxis · Industrie &amp; Mittelstand</div>
+        <h1 class="hero-headline">
+          IT-Strukturen ordnen. <em>Komplexität entwirren.</em> Unternehmen auf Kurs bringen.
+        </h1>
+        <p class="hero-lede">
+          Ich begleite Industrieunternehmen und Mittelstand als CIO und Strategieberater — von gewachsenen SAP-Landschaften bis zur klaren Daten- und Governance-Architektur. Pragmatismus statt PowerPoint-Theater.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact-de" class="btn btn-primary">Gespräch anfragen <span class="arrow">→</span></a>
+          <a href="#services-de" class="btn btn-ghost">Leistungen ansehen</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <img src="portrait.jpg" alt="Joachim J. Reichel, Porträt" />
+        <div class="portrait-caption">
+          <div class="portrait-meta-lines">
+            <span>Joachim J. Reichel</span>
+            <span>Hamburg · an Bord der Viking</span>
+          </div>
+          <span>N 53°33′</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="creds" aria-label="Eckdaten">
+    <div class="creds-inner">
+      <div class="creds-label">Wofür ich stehe — in Zahlen und Schwerpunkten</div>
+      <div class="creds-list">
+        <div class="cred">
+          <div class="cred-num">25<sup>+</sup></div>
+          <div class="cred-label">Jahre IT-&amp; CIO-Erfahrung</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">SAP</div>
+          <div class="cred-label">Harmonisierung &amp; Governance</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">M&amp;A</div>
+          <div class="cred-label">Carve-outs &amp; Restrukturierung</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">3</div>
+          <div class="cred-label">Arbeitssprachen — DE · EN · ES</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services-de">
+    <div class="inner">
+      <div class="services-header">
+        <div>
+          <div class="kicker">Leistungen</div>
+          <h2 class="section-title">Was ich für Unternehmen löse</h2>
+        </div>
+        <p class="section-lede">
+          Ich steige dort ein, wo gewachsene IT-Strukturen, Altlasten und Silos Entscheidungen blockieren. Ziel ist, Ruhe ins System zu bringen, ohne den Betrieb zu gefährden — und eine Struktur aufzubauen, die trägt.
+        </p>
+      </div>
+
+      <div class="services-list">
+        <article class="service">
+          <div class="service-num">01</div>
+          <div>
+            <h3 class="service-title">IT-Assessment &amp; Zielbild</h3>
+          </div>
+          <div class="service-body">
+            <p>Schonungsloser, aber konstruktiver Blick auf Ihre IT-Landschaft — inklusive klarer Roadmap: was bleibt, was verschwindet, was neu aufgebaut werden muss.</p>
+            <ul class="service-list">
+              <li>Bestandsaufnahme von Systemen, Prozessen und Governance</li>
+              <li>Risiken, technische Schulden und Engpässe sichtbar machen</li>
+              <li>Konkretes Zielbild und Maßnahmenplan in verständlicher Sprache</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service-num">02</div>
+          <div>
+            <h3 class="service-title">SAP- &amp; Systemlandschaften ordnen</h3>
+          </div>
+          <div class="service-body">
+            <p>Wo mehrere SAP-Systeme, Workarounds und Excel-Universen nebeneinander existieren, schmilzt jede Governance dahin. Hier sorge ich für Ordnung.</p>
+            <ul class="service-list">
+              <li>Harmonisierung von SAP-Instanzen und Kernprozessen</li>
+              <li>Standardisierung von Master Data und Stammdaten-Governance</li>
+              <li>Vorbereitung auf Carve-outs, M&amp;A oder Reorganisationen</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service-num">03</div>
+          <div>
+            <h3 class="service-title">Interim-CIO &amp; Sparringspartner</h3>
+          </div>
+          <div class="service-body">
+            <p>Neutraler Blick von außen, ohne interne Lager. Ich übersetze zwischen Vorstand, Fachbereich, IT und Betriebsrat — und halte dabei den Kurs.</p>
+            <ul class="service-list">
+              <li>Temporäre CIO-Rolle oder Co-Pilot für bestehende CIOs</li>
+              <li>Entscheidungsvorlagen und klare Optionen für Vorstand und Beirat</li>
+              <li>Begleitung kritischer Programme und Transformationen</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach-de">
+    <div class="inner approach-grid">
+      <div>
+        <div class="kicker">Projekte &amp; Muster</div>
+        <h2 class="section-title">Typische Einsätze — was sichtbar werden darf</h2>
+        <p class="section-lede">
+          Details bleiben vertraulich. Was sich zeigen lässt: Muster, in denen ich arbeite — und wie aus IT-Baustellen wieder steuerbare Systeme werden.
+        </p>
+        <ul class="approach-engagements">
+          <li><span class="tag">Assessment</span><span>IT-Gesamtaufnahme in einem internationalen Industrieunternehmen mit mehreren SAP-Installationen.</span></li>
+          <li><span class="tag">SAP</span><span>Entwurf einer standardisierten SAP- und Prozesslandschaft für eine heterogene Unternehmensgruppe.</span></li>
+          <li><span class="tag">Daten</span><span>Aufbau von Master-Data-Governance über mehrere Standorte hinweg.</span></li>
+          <li><span class="tag">Carve-out</span><span>Begleitung eines Carve-outs mit Fokus auf IT-Schnittstellen und Betriebsfähigkeit.</span></li>
+        </ul>
+      </div>
+
+      <aside class="principles">
+        <h3>Arbeitsweise</h3>
+        <p>Ich bringe die Ruhe eines Skippers in stürmischer See mit — keine Hektik, keine Show, sondern klare Lagebilder, verständliche Optionen und konsequente Priorisierung.</p>
+        <ol class="principles-list">
+          <li><span class="pnum">i.</span><span><strong>Radikal ehrlich, aber loyal.</strong> Ich benenne, was nicht trägt — und arbeite gleichzeitig für die Organisation, nicht gegen sie.</span></li>
+          <li><span class="pnum">ii.</span><span><strong>Strategie und Umsetzung zusammen gedacht.</strong> Kein Folienzirkus, der im Betrieb auseinanderfällt.</span></li>
+          <li><span class="pnum">iii.</span><span><strong>Hands-on, aber strukturiert.</strong> Vom Audit bis zur Umsetzung — mit oder neben bestehenden Teams und Beratungen.</span></li>
+          <li><span class="pnum">iv.</span><span><strong>Entscheidungen, die tragen.</strong> Verständlich für Vorstand, Fachbereich und IT zugleich.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about-de">
+    <div class="inner about-grid">
+      <div class="about-copy">
+        <div class="kicker">Profil</div>
+        <h2 class="section-title">Wer hinter dem Kompass steht</h2>
+        <p>Ich habe sowohl in internationalen Konzernen als auch in der Beratung gearbeitet. Vorstandsetagen, Werksgelände und Maschinenräume sind mir gleichermaßen vertraut — und ich weiß, dass PowerPoint-Folien allein weder eine IT noch ein Schiff nach Hause bringen.</p>
+        <p>Meine Stärke ist es, technische, organisatorische und menschliche Aspekte zusammenzubringen. Wer hat welche Interessen? Wo sitzt die eigentliche Blockade? Welche Entscheidung bringt wirklich Entlastung?</p>
+        <p>Im Idealfall verlassen Sie ein gemeinsames Projekt mit: einer klaren IT-Landkarte, weniger Komplexität, mehr Entscheidungsfähigkeit — und einem Team, das versteht, warum es diesen Kurs mitgeht.</p>
+      </div>
+      <aside class="about-card">
+        <h3>Stichpunkte</h3>
+        <ul class="about-list">
+          <li><span class="idx">01</span><span><strong>Langjährige Erfahrung</strong> als CIO und IT-Verantwortlicher in internationalen Umfeldern.</span></li>
+          <li><span class="idx">02</span><span><strong>Fokus</strong> auf Industrie und produzierendes Gewerbe.</span></li>
+          <li><span class="idx">03</span><span><strong>SAP-Landschaften</strong>, Master Data und Governance.</span></li>
+          <li><span class="idx">04</span><span><strong>Restrukturierung</strong>, Carve-outs und Transformationen.</span></li>
+          <li><span class="idx">05</span><span><strong>Skipper &amp; Eigner</strong> der Ketch „Viking“ — Führung unter echten Wetterbedingungen.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sailing" id="sailing-de">
+    <div class="inner sailing-grid">
+      <div>
+        <div class="kicker">Ketch Viking</div>
+        <h2 class="section-title">Segeln als Führungs- und Systemmetapher</h2>
+        <p class="sailing-intro">
+          Auf See zeigt sich im Zeitraffer, was in Unternehmen oft Jahre braucht: kleine Fehler in Struktur, Kommunikation oder Verantwortung werden bei schlechtem Wetter sofort sichtbar.
+        </p>
+        <blockquote class="sailing-quote">
+          Ein Schiff ist ein komplexes System — Technik, Crew, Wetter, Navigation, Material. Keine Komponente funktioniert isoliert. In IT-Landschaften ist es nicht anders.
+        </blockquote>
+        <ul class="sailing-principles">
+          <li><span class="roman">i.</span><span><strong>Klarer Kurs statt Aktionismus.</strong> Erst Lage klären, dann Manöver.</span></li>
+          <li><span class="roman">ii.</span><span><strong>Redundanz und Robustheit.</strong> Systeme so bauen, dass sie Fehler verzeihen.</span></li>
+          <li><span class="roman">iii.</span><span><strong>Rollen und Verantwortung.</strong> Wer macht was, wenn es ernst wird?</span></li>
+          <li><span class="roman">iv.</span><span><strong>Kommunikation.</strong> Klare, knappe Ansagen — ohne Drama, ohne Beschönigung.</span></li>
+        </ul>
+      </div>
+
+      <div class="sailing-illus" aria-hidden="true">
+        <div class="sailing-illus-label"><span>Ketch „Viking“</span><span>Langfahrt</span></div>
+        <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="rgba(250,248,244,0.55)" stroke-width="1">
+            <!-- Kompassrose -->
+            <circle cx="150" cy="180" r="110" />
+            <circle cx="150" cy="180" r="75" stroke-opacity="0.4" />
+            <circle cx="150" cy="180" r="3" fill="rgba(250,248,244,0.55)" />
+            <!-- Kardinalstriche -->
+            <line x1="150" y1="55" x2="150" y2="305" />
+            <line x1="25" y1="180" x2="275" y2="180" />
+            <!-- Diagonalen schwach -->
+            <line x1="62" y1="92" x2="238" y2="268" stroke-opacity="0.25" />
+            <line x1="238" y1="92" x2="62" y2="268" stroke-opacity="0.25" />
+          </g>
+          <!-- Nordpfeil -->
+          <polygon points="150,55 144,180 156,180" fill="rgba(183,132,76,0.85)" />
+          <polygon points="150,305 144,180 156,180" fill="rgba(250,248,244,0.35)" />
+          <text x="150" y="40" text-anchor="middle" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.7)" font-style="italic">N</text>
+          <text x="150" y="328" text-anchor="middle" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">S</text>
+          <text x="12" y="185" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">W</text>
+          <text x="282" y="185" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">E</text>
+        </svg>
+        <div class="sailing-illus-title">Course &amp; Clarity</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact-de">
+    <div class="inner">
+      <div class="kicker">Kontakt</div>
+      <h2 class="section-title">Lassen Sie uns Ihre Lagekarte zeichnen</h2>
+      <p class="section-lede">
+        Ob erstes Sparring, Zweitmeinung zu einer Strategie oder Begleitung eines konkreten Programms: ein kurzes, fokussiertes Gespräch reicht meist, um zu sehen, ob und wie ich helfen kann.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-primary">
+          <p>Schreiben Sie mir mit ein paar Stichworten zu Ihrer Situation — idealerweise Unternehmensgröße, Branche, aktuelle Herausforderungen und Zeithorizont.</p>
+          <div class="contact-row">
+            <span class="contact-label">E-Mail</span>
+            <span class="contact-value"><a href="mailto:joachim@reichel.digital">joachim@reichel.digital</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value"><a href="https://www.linkedin.com/in/j-j-r/" target="_blank" rel="noopener">linkedin.com/in/j-j-r</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Format</span>
+            <span class="contact-value">Kurzes Videogespräch oder Telefonat — wie es für Sie passt.</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Region</span>
+            <span class="contact-value">DACH, europaweit, selektiv international.</span>
+          </div>
+        </div>
+
+        <div class="contact-aside">
+          <h3>Vorschlag für ein erstes Gespräch · 30–45 Min.</h3>
+          <ol>
+            <li>Kurze Einordnung Ihrer aktuellen IT- und Organisationslage.</li>
+            <li>Benennung der größten Hebel und Risiken aus meiner Sicht.</li>
+            <li>Skizze, wie ein pragmatisches Vorgehen aussehen könnte.</li>
+            <li>Transparenz — wo ich helfen kann und wo nicht.</li>
+          </ol>
+          <p class="contact-close">
+            Keine Verkaufsshow, keine Folien. Nur ein ehrlicher Blick auf Ihre Situation — und ein Vorschlag, wie Sie weiter vorgehen können, mit oder ohne mich.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>© <span class="year"></span> JOACHIM J. REICHEL · REICHEL.DIGITAL</div>
+    <div class="footer-links">
+      <a href="#top-de">Nach oben</a>
+      <a href="#services-de">Leistungen</a>
+      <a href="#contact-de">Kontakt</a>
+    </div>
+  </div>
+</footer>
 </div>
 
-<!-- ENGLISCH -->
-<div id="lang-en" class="lang-block">
-    <div class="page">
-        <header>
-            <div class="nav">
-                <div class="brand">
-                    <div class="brand-title">Joachim&nbsp;J.&nbsp;Reichel</div>
-                    <div class="brand-sub">CIO · IT Strategy Advisor · Skipper</div>
-                </div>
-                <nav class="nav-links">
-                    <a href="#services-en">Services</a>
-                    <a href="#projects-en">Projects</a>
-                    <a href="#about-en">Profile</a>
-                    <a href="#sailing-en">Ketch&nbsp;Viking</a>
-                    <a href="#contact-en">Contact</a>
-                    <a href="#contact-en" class="nav-cta">Schedule a call</a>
-                </nav>
-                <div class="nav-lang-switcher">
-    			<button onclick="setLanguage('de')">DE</button>
-    			<button class="active" onclick="setLanguage('en')">EN</button>
-    			<button onclick="setLanguage('es')">ES</button>
-		</div>
-                <div class="nav-toggle">☰</div>
-            </div>
-        </header>
+<!-- ==================== EN ==================== -->
+<div id="lang-en" class="lang" data-screen-label="EN">
 
-        <main>
-            <!-- HERO EN -->
-            <section class="hero section" id="home-en">
-                <div class="section-inner hero-grid">
-                    <div>
-                        <div class="eyebrow">IT under control instead of in the fog</div>
-                        <h1 class="hero-title">
-                            Bringing structure to IT, <span class="hero-highlight">untangling complexity</span>, keeping your company on course.
-                        </h1>
-                        <p class="hero-sub">
-                            I support industrial and mid-sized companies as CIO and strategy advisor – from sprawling SAP
-                            landscapes to clear data and governance architectures. Pragmatism instead of PowerPoint theatre.
-                        </p>
-
-                        <div class="hero-badges">
-                            <span class="badge badge-strong">CIO &amp; Consultant</span>
-                            <span class="badge">IT restructuring &amp; carve-outs</span>
-                            <span class="badge">SAP &amp; system landscape harmonisation</span>
-                            <span class="badge">Data &amp; governance structures</span>
-                        </div>
-
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="document.getElementById('contact-en').scrollIntoView({behavior:'smooth'})">
-                                <span class="icon">➜</span>
-                                Request a conversation
-                            </button>
-                            <button class="btn btn-ghost" onclick="document.getElementById('projects-en').scrollIntoView({behavior:'smooth'})">
-                                <span class="icon">⛵</span>
-                                View projects &amp; approach
-                            </button>
-                        </div>
-
-                        <div class="hero-meta">
-                            <strong>Bottom line:</strong> I turn IT complexity into clear decisions – and make sure they work
-                            in reality, not just in slides.
-                        </div>
-                    </div>
-
-                    <aside class="hero-panel" aria-label="Profile & key topics">
-                        <div class="hero-panel-header">
-                            <div style="display:flex;align-items:center;gap:0.65rem;">
-                                <img src="portrait.jpg" alt="Joachim J. Reichel" class="portrait-avatar" />
-                                <div class="hero-panel-title">Quick compass</div>
-                            </div>
-                            <div class="hero-panel-chip">CIO · Advisor · Skipper</div>
-                        </div>
-                        <div class="hero-panel-body">
-                            <div class="metric-grid">
-                                <div class="metric">
-                                    <div class="metric-label">Focus</div>
-                                    <div class="metric-value">IT restructuring</div>
-                                    <div class="metric-pill">
-                                        <span class="dot"></span>
-                                        <span>From audit to execution</span>
-                                    </div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-label">Context</div>
-                                    <div class="metric-value">Industrial &amp; mid-sized firms</div>
-                                    <div class="metric-pill">
-                                        <span class="dot"></span>
-                                        <span>Practical, not academic</span>
-                                    </div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-label">Typical themes</div>
-                                    <div class="metric-value">SAP, master data<span>&amp; governance</span></div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-label">Style</div>
-                                    <div class="metric-value">clear · direct · calm</div>
-                                </div>
-                            </div>
-                            <div class="hero-panel-footer">
-                                As at sea: course, wind, and vessel must align. In companies this means
-                                <strong>strategy, organisation, IT &amp; people</strong> working in the same direction – not against each other.
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- SERVICES EN -->
-            <section class="section" id="services-en">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Services</div>
-                        <h2 class="section-title">What I help organisations solve</h2>
-                        <p class="section-sub">
-                            I come in where legacy IT, grown structures and silos block decisions.
-                            The goal: create calm in the system without endangering operations – and build a structure that holds.
-                        </p>
-                    </div>
-
-                    <div class="cards-grid">
-                        <article class="card">
-                            <div class="card-tag">Module 1</div>
-                            <h3 class="card-title">IT assessment &amp; target picture</h3>
-                            <p class="card-body">
-                                A frank but constructive view of your IT landscape – including a clear roadmap
-                                of what should stay, what must go, and what needs to be built.
-                            </p>
-                            <ul class="card-list">
-                                <li>Inventory of systems, processes, and governance</li>
-                                <li>Making risks, technical debt &amp; bottlenecks visible</li>
-                                <li>Concrete target picture &amp; action plan in plain language</li>
-                            </ul>
-                        </article>
-
-                        <article class="card">
-                            <div class="card-tag">Module 2</div>
-                            <h3 class="card-title">Structuring SAP &amp; system landscapes</h3>
-                            <p class="card-body">
-                                When several SAP systems, workarounds and Excel universes coexist, governance dissolves.
-                                Here I bring structure back in.
-                            </p>
-                            <ul class="card-list">
-                                <li>Harmonisation of SAP instances &amp; core processes</li>
-                                <li>Standardisation of master data &amp; data governance</li>
-                                <li>Preparation for carve-outs, M&amp;A or reorganisations</li>
-                            </ul>
-                        </article>
-
-                        <article class="card">
-                            <div class="card-tag">Module 3</div>
-                            <h3 class="card-title">Interim CIO &amp; sparring partner</h3>
-                            <p class="card-body">
-                                A neutral outside view, without internal factions. I translate between board, business,
-                                IT and workers’ council – and keep the course.
-                            </p>
-                            <ul class="card-list">
-                                <li>Temporary CIO role or co-pilot to the existing CIO</li>
-                                <li>Decision notes and clear options for board &amp; advisory council</li>
-                                <li>Support for critical programmes &amp; transformations</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PROJECTS EN -->
-            <section class="section" id="projects-en">
-                <div class="section-inner two-col">
-                    <div>
-                        <div class="section-header">
-                            <div class="section-kicker">Projects</div>
-                            <h2 class="section-title">Selected engagements &amp; impact</h2>
-                            <p class="section-sub">
-                                Details are usually confidential. What can be shown are patterns I work in –
-                                and how IT construction sites become manageable systems again.
-                            </p>
-                        </div>
-
-                        <div class="pill-block">
-                            <p style="margin-bottom:0.7rem;">
-                                <strong>Examples of engagements:</strong>
-                            </p>
-                            <ul class="card-list">
-                                <li>IT assessment in an international industrial company with multiple SAP installations</li>
-                                <li>Design of a standardised SAP and process landscape for a heterogeneous group</li>
-                                <li>Building master data governance across several locations</li>
-                                <li>Supporting a carve-out with focus on IT interfaces and operational continuity</li>
-                            </ul>
-                            <p class="muted-inline">
-                                In all of these cases the result: less complexity, clearer accountability and decisions
-                                that do not stop at PowerPoint.
-                            </p>
-                        </div>
-                    </div>
-
-                    <aside>
-                        <div class="pill-block">
-                            <p style="margin-bottom:0.6rem;"><strong>How I work</strong></p>
-                            <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.7rem;">
-                                I bring the calm of a skipper in rough seas: no drama, no show, but clear situation pictures,
-                                understandable options and consistent prioritisation.
-                            </p>
-                            <div style="margin-bottom:0.5rem;">
-                                <span class="pill-inline">
-                                    <span class="dot"></span>
-                                    <span>radically honest, but loyal</span>
-                                </span>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>
-                                    <span>strategy &amp; execution tied together</span>
-                                </span>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>
-                                    <span>hands-on, no slide circus</span>
-                                </span>
-                            </div>
-                            <p class="muted-inline">
-                                Where useful I work closely with existing consultancies or internal teams –
-                                as a calm counterpart breaking complexity down.
-                            </p>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- ABOUT EN -->
-            <section class="section" id="about-en">
-                <div class="section-inner two-col">
-                    <div>
-                        <div class="section-header">
-                            <div class="section-kicker">Profile</div>
-                            <h2 class="section-title">Who stands behind the compass</h2>
-                            <p class="section-sub">
-                                CIO, IT strategy advisor and skipper – three roles, one pattern: understand systems,
-                                recognise structures, set course and ensure the crew comes along.
-                            </p>
-                        </div>
-
-                        <p style="font-size:0.92rem; color:var(--muted); margin-bottom:0.8rem;">
-                            I have worked both in international corporations and in consulting.
-                            I know board rooms, shop floors and machine rooms – and I know that slides alone
-                            will neither land an IT nor a ship safely.
-                        </p>
-                        <p style="font-size:0.92rem; color:var(--muted); margin-bottom:0.8rem;">
-                            My strength is to connect technical, organisational and human aspects:
-                            Who has which interests? Where is the real blockage? Which decision truly brings relief?
-                        </p>
-                        <p style="font-size:0.92rem; color:var(--muted);">
-                            Ideally, you leave a joint project with: a clear map of your IT, less complexity,
-                            more decision capability – and a team that understands why it follows this course.
-                        </p>
-                    </div>
-
-                    <aside>
-                        <img src="portrait.jpg" alt="Joachim J. Reichel – CIO & IT Strategy Advisor" class="portrait-img" loading="lazy" />
-                        <div class="pill-block" style="margin-top:1rem;">
-                            <p style="margin-bottom:0.6rem;"><strong>Key points at a glance</strong></p>
-                            <ul class="card-list">
-                                <li>Many years of experience as CIO and IT leader</li>
-                                <li>Focus on industrial companies &amp; manufacturing</li>
-                                <li>Expertise in SAP landscapes, master data and governance</li>
-                                <li>Experience with restructuring, carve-outs and transformations</li>
-                                <li>Skipper &amp; owner of ketch “Viking” – leadership under real weather conditions</li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- SAILING EN -->
-            <section class="section" id="sailing-en">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Ketch Viking</div>
-                        <h2 class="section-title">Sailing as leadership &amp; systems metaphor</h2>
-                        <p class="section-sub">
-                            At sea you see in fast-forward what takes years in organisations:
-                            small flaws in structure, communication or accountability show up immediately in bad weather.
-                        </p>
-                    </div>
-
-                    <div class="sailing-card">
-                        <h3 class="sailing-title">What sailing has to do with IT restructuring</h3>
-                        <p class="sailing-meta">
-                            Ketch “Viking” · Long-distance capable · Many miles under varied conditions
-                        </p>
-                        <p>
-                            A ship is a complex system: technology, crew, weather, navigation, material. No part works in isolation;
-                            everything is interconnected. IT landscapes are no different.
-                        </p>
-                        <ul class="sailing-list">
-                            <li><strong>Clear course instead of actionism:</strong> clarify course &amp; situation first, then manoeuvre.</li>
-                            <li><strong>Redundancy &amp; robustness:</strong> build systems that forgive mistakes.</li>
-                            <li><strong>Roles &amp; responsibility:</strong> who does what when it gets serious?</li>
-                            <li><strong>Communication:</strong> concise, clear messages – without drama or sugar-coating.</li>
-                        </ul>
-                        <p style="margin-top:0.7rem;">
-                            I like to use these metaphors in workshops and with boards because they de-emotionalise complexity
-                            and make it tangible without trivialising it.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CONTACT EN -->
-            <section class="section" id="contact-en">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Contact</div>
-                        <h2 class="section-title">Let’s draw your situation map</h2>
-                        <p class="section-sub">
-                            Whether first sparring, second opinion on a strategy or support for a concrete programme:
-                            a short, focused conversation is usually enough to see if and how I can help.
-                        </p>
-                    </div>
-
-                    <div class="contact-grid">
-                        <div class="contact-box">
-                            <p>
-                                Send me a few lines about your situation – ideally company size, industry,
-                                current challenges and rough time frame.
-                            </p>
-                            <div class="contact-item">
-                                <div class="contact-label">Email</div>
-                                <div class="contact-value">
-                                    <a href="mailto:joachim@reichel.digital">joachim@reichel.digital</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-label">LinkedIn</div>
-                                <div class="contact-value">
-                                    <a href="https://www.linkedin.com/in/j-j-r/" target="_blank" rel="noopener">View profile on LinkedIn</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-label">Format</div>
-                                <div class="contact-value">
-                                    Short video call or phone call – whichever you prefer.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contact-box">
-                            <p style="margin-bottom:0.6rem;"><strong>Suggested first call (30–45 minutes):</strong></p>
-                            <ul class="card-list">
-                                <li>Brief assessment of your current IT and organisational situation</li>
-                                <li>My view on the biggest levers &amp; risks</li>
-                                <li>Sketch of a pragmatic way forward</li>
-                                <li>Transparency: where I can help – and where not</li>
-                            </ul>
-                            <p class="muted-inline">
-                                No sales show, no slide deck. Just an honest view of your situation and a proposal
-                                on how to move forward – with or without me.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="footer-inner">
-                <div>© <span class="year"></span> Joachim J. Reichel · All rights reserved.</div>
-                <div class="footer-links">
-                    <a href="#home-en">Back to top</a>
-                    <a href="#services-en">Services</a>
-                    <a href="#contact-en">Contact</a>
-                </div>
-            </div>
-        </footer>
+<header class="site-header">
+  <div class="nav">
+    <a href="#top-en" class="brand">
+      <span class="brand-mark">JJR</span>
+      <span>
+        <span class="brand-name">Joachim J. Reichel</span>
+        <span class="brand-role">CIO · IT Strategy Advisor</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services-en">Services</a>
+      <a href="#approach-en">Approach</a>
+      <a href="#about-en">Profile</a>
+      <a href="#sailing-en">Viking</a>
+      <a href="#contact-en">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button data-lang="de">DE</button><span class="sep">/</span>
+        <button class="on" data-lang="en">EN</button><span class="sep">/</span>
+        <button data-lang="es">ES</button>
+      </div>
+      <a href="#contact-en" class="nav-cta">Schedule a call</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
     </div>
-</div>
-<!-- ESPAÑOL -->
-<div id="lang-es" class="lang-block">
-    <div class="page">
-        <header>
-            <div class="nav">
-                <div class="brand">
-                    <div class="brand-title">Joachim&nbsp;J.&nbsp;Reichel</div>
-                    <div class="brand-sub">CIO · Asesor de Estrategia TI · Skipper</div>
-                </div>
-                <nav class="nav-links">
-                    <a href="#services-es">Servicios</a>
-                    <a href="#projects-es">Proyectos</a>
-                    <a href="#about-es">Perfil</a>
-                    <a href="#sailing-es">Ketch&nbsp;Viking</a>
-                    <a href="#contact-es">Contacto</a>
-                    <a href="#contact-es" class="nav-cta">Solicitar llamada</a>
-                </nav>
-                <div class="nav-lang-switcher">
-                    <button onclick="setLanguage('de')">DE</button>
-                    <button onclick="setLanguage('en')">EN</button>
-                    <button class="active" onclick="setLanguage('es')">ES</button>
-                </div>
-                <div class="nav-toggle">☰</div>
-            </div>
-        </header>
+  </div>
+</header>
 
-        <main>
-
-            <!-- HERO ES -->
-            <section class="hero section" id="home-es">
-                <div class="section-inner hero-grid">
-                    <div>
-                        <div class="eyebrow">TI bajo control, no en la niebla</div>
-                        <h1 class="hero-title">
-                            Ordenar estructuras TI, <span class="hero-highlight">desenredar la complejidad</span> y mantener a la empresa en rumbo.
-                        </h1>
-                        <p class="hero-sub">
-                            Acompaño a empresas industriales y medianas como CIO y asesor estratégico — desde paisajes SAP desbordados
-                            hasta arquitecturas claras de datos y gobernanza. Pragmatismo en lugar de teatro PowerPoint.
-                        </p>
-
-                        <div class="hero-badges">
-                            <span class="badge badge-strong">CIO &amp; Consultor</span>
-                            <span class="badge">Reestructuración TI &amp; carve-outs</span>
-                            <span class="badge">Armonización de sistemas SAP</span>
-                            <span class="badge">Estructuras de datos &amp; gobernanza</span>
-                        </div>
-
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="document.getElementById('contact-es').scrollIntoView({behavior:'smooth'})">
-                                <span class="icon">➜</span>
-                                Solicitar conversación
-                            </button>
-                            <button class="btn btn-ghost" onclick="document.getElementById('projects-es').scrollIntoView({behavior:'smooth'})">
-                                <span class="icon">⛵</span>
-                                Ver proyectos &amp; enfoque
-                            </button>
-                        </div>
-
-                        <div class="hero-meta">
-                            <strong>En pocas palabras:</strong> convierto la complejidad TI en decisiones claras — y aseguro que funcionen en la realidad, no solo en diapositivas.
-                        </div>
-                    </div>
-
-                    <aside class="hero-panel">
-                        <div class="hero-panel-header">
-                            <div style="display:flex;align-items:center;gap:0.65rem;">
-                                <img src="portrait.jpg" alt="Joachim J. Reichel" class="portrait-avatar" />
-                                <div class="hero-panel-title">Brújula rápida</div>
-                            </div>
-                            <div class="hero-panel-chip">CIO · Asesor · Skipper</div>
-                        </div>
-
-                        <div class="hero-panel-body">
-                            <div class="metric-grid">
-                                <div class="metric">
-                                    <div class="metric-label">Enfoque</div>
-                                    <div class="metric-value">Reestructuración TI</div>
-                                    <div class="metric-pill">
-                                        <span class="dot"></span>
-                                        <span>Del diagnóstico a la ejecución</span>
-                                    </div>
-                                </div>
-
-                                <div class="metric">
-                                    <div class="metric-label">Contexto</div>
-                                    <div class="metric-value">Industria &amp; empresas medianas</div>
-                                    <div class="metric-pill">
-                                        <span class="dot"></span>
-                                        <span>Práctico, no académico</span>
-                                    </div>
-                                </div>
-
-                                <div class="metric">
-                                    <div class="metric-label">Temas típicos</div>
-                                    <div class="metric-value">SAP, datos maestros<span>&amp; gobernanza</span></div>
-                                </div>
-
-                                <div class="metric">
-                                    <div class="metric-label">Estilo</div>
-                                    <div class="metric-value">claro · directo · sereno</div>
-                                </div>
-                            </div>
-
-                            <div class="hero-panel-footer">
-                                Como en el mar: rumbo, viento y barco deben alinearse.  
-                                En las empresas eso significa que
-                                <strong>estrategia, organización, TI y personas</strong> trabajan en la misma dirección — no unas contra otras.
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- SERVICES ES -->
-            <section class="section" id="services-es">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Servicios</div>
-                        <h2 class="section-title">Lo que ayudo a resolver en las organizaciones</h2>
-                        <p class="section-sub">
-                            Entro cuando la TI heredada, las estructuras crecientes y los silos bloquean decisiones.
-                            Objetivo: dar calma al sistema sin riesgos operativos — y construir una estructura que perdure.
-                        </p>
-                    </div>
-
-                    <div class="cards-grid">
-
-                        <article class="card">
-                            <div class="card-tag">Módulo 1</div>
-                            <h3 class="card-title">Evaluación TI &amp; imagen objetivo</h3>
-                            <p class="card-body">
-                                Un análisis sincero pero constructivo de su panorama TI — con una hoja de ruta clara sobre qué debe permanecer,
-                                qué debe eliminarse y qué debe construirse.
-                            </p>
-                            <ul class="card-list">
-                                <li>Inventario de sistemas, procesos y gobernanza</li>
-                                <li>Riesgos, deudas técnicas y cuellos de botella visibles</li>
-                                <li>Imagen objetivo y plan de acción en lenguaje claro</li>
-                            </ul>
-                        </article>
-
-                        <article class="card">
-                            <div class="card-tag">Módulo 2</div>
-                            <h3 class="card-title">Ordenar paisajes SAP &amp; sistemas</h3>
-                            <p class="card-body">
-                                Cuando múltiples sistemas SAP, soluciones improvisadas y universos Excel coexisten,
-                                la gobernanza desaparece. Aquí restablezco el orden.
-                            </p>
-                            <ul class="card-list">
-                                <li>Armonización de instancias SAP &amp; procesos centrales</li>
-                                <li>Estandarización de datos maestros &amp; gobernanza</li>
-                                <li>Preparación para carve-outs, M&amp;A o reorganizaciones</li>
-                            </ul>
-                        </article>
-
-                        <article class="card">
-                            <div class="card-tag">Módulo 3</div>
-                            <h3 class="card-title">CIO interino &amp; sparring partner</h3>
-                            <p class="card-body">
-                                Una mirada externa y neutral. Traduzco entre junta directiva, áreas de negocio, TI y comité de empresa — manteniendo el rumbo.
-                            </p>
-                            <ul class="card-list">
-                                <li>Rol temporal de CIO o copiloto del CIO existente</li>
-                                <li>Opciones claras &amp; notas de decisión para la dirección</li>
-                                <li>Acompañamiento de programas críticos &amp; transformaciones</li>
-                            </ul>
-                        </article>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- PROJECTS ES -->
-            <section class="section" id="projects-es">
-                <div class="section-inner two-col">
-                    <div>
-                        <div class="section-header">
-                            <div class="section-kicker">Proyectos</div>
-                            <h2 class="section-title">Asignaciones seleccionadas &amp; impacto</h2>
-                            <p class="section-sub">
-                                Los detalles suelen ser confidenciales. Lo que sí puede mostrarse: patrones típicos de trabajo
-                                y cómo los “obras” TI vuelven a convertirse en sistemas gobernables.
-                            </p>
-                        </div>
-
-                        <div class="pill-block">
-                            <p><strong>Ejemplos de intervenciones:</strong></p>
-                            <ul class="card-list">
-                                <li>Evaluación TI en una empresa industrial internacional con múltiples sistemas SAP</li>
-                                <li>Diseño de un paisaje SAP y de procesos estandarizado para un grupo heterogéneo</li>
-                                <li>Creación de gobernanza de datos maestros en varias sedes</li>
-                                <li>Acompañamiento de un carve-out centrado en interfaces TI &amp; continuidad operativa</li>
-                            </ul>
-                            <p class="muted-inline">
-                                Resultado en todos los casos: menos complejidad, responsabilidades claras y decisiones
-                                que no se quedan en diapositivas.
-                            </p>
-                        </div>
-                    </div>
-
-                    <aside>
-                        <div class="pill-block">
-                            <p><strong>Cómo trabajo</strong></p>
-                            <p class="muted-inline">
-                                Aporto la calma de un skipper en mar agitado: sin drama, sin espectáculo,
-                                con imágenes claras de la situación, opciones comprensibles y priorización firme.
-                            </p>
-                            <div>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>honestidad radical, pero lealtad
-                                </span>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>estrategia &amp; ejecución unidas
-                                </span>
-                                <span class="pill-inline">
-                                    <span class="dot"></span>práctico, sin circo de diapositivas
-                                </span>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- ABOUT ES -->
-            <section class="section" id="about-es">
-                <div class="section-inner two-col">
-                    <div>
-                        <div class="section-header">
-                            <div class="section-kicker">Perfil</div>
-                            <h2 class="section-title">Quién está detrás de la brújula</h2>
-                            <p class="section-sub">
-                                CIO, asesor de estrategia TI y skipper — tres roles, un patrón: comprender sistemas, ver estructuras,
-                                fijar rumbo y asegurar que todos a bordo remen en la misma dirección.
-                            </p>
-                        </div>
-
-                        <p class="muted-inline">
-                            He trabajado tanto en corporaciones internacionales como en consultoría.
-                            Conozco salas de juntas, plantas de producción y salas de máquinas — y sé que las diapositivas por sí solas
-                            no llevan a ningún barco ni a ninguna TI a puerto seguro.
-                        </p>
-                        <p class="muted-inline">
-                            Mi fortaleza es unir lo técnico, lo organizacional y lo humano:
-                            ¿Quién tiene qué intereses? ¿Dónde está el bloqueo real? ¿Qué decisión aporta alivio de verdad?
-                        </p>
-                        <p class="muted-inline">
-                            Idealmente, un proyecto conjunto termina con: un mapa claro de la TI, menos complejidad,
-                            mayor capacidad de decisión y un equipo que comprende por qué sigue ese rumbo.
-                        </p>
-                    </div>
-
-                    <aside>
-                        <img src="portrait.jpg" alt="Joachim J. Reichel – CIO & Asesor de Estrategia TI" class="portrait-img" loading="lazy" />
-                        <div class="pill-block" style="margin-top:1rem;">
-                            <p><strong>Puntos clave</strong></p>
-                            <ul class="card-list">
-                                <li>Amplia experiencia como CIO y líder TI</li>
-                                <li>Especialización en empresas industriales &amp; manufactura</li>
-                                <li>Experto en paisajes SAP, datos maestros y gobernanza</li>
-                                <li>Experiencia en reestructuraciones y carve-outs</li>
-                                <li>Skipper &amp; propietario de la ketch “Viking”</li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- SAILING ES -->
-            <section class="section" id="sailing-es">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Ketch Viking</div>
-                        <h2 class="section-title">La navegación como metáfora de liderazgo &amp; sistemas</h2>
-                        <p class="section-sub">
-                            En el mar se ve en “modo acelerado” lo que en las empresas tarda años:
-                            errores pequeños en estructura, comunicación o responsabilidad aparecen de inmediato con mal tiempo.
-                        </p>
-                    </div>
-
-                    <div class="sailing-card">
-                        <h3 class="sailing-title">Qué tiene que ver navegar con la reestructuración TI</h3>
-                        <p class="sailing-meta">
-                            Ketch “Viking” · Preparada para larga distancia · Muchas millas en condiciones variadas
-                        </p>
-
-                        <p>
-                            Un barco es un sistema complejo: tecnología, tripulación, clima, navegación, materiales.
-                            Nada funciona aislado; todo está interconectado. Igual que en los paisajes TI.
-                        </p>
-
-                        <ul class="sailing-list">
-                            <li><strong>Rumbo claro, no acción impulsiva:</strong> primero rumbo &amp; situación; luego maniobras.</li>
-                            <li><strong>Redundancia &amp; robustez:</strong> sistemas que perdonan errores.</li>
-                            <li><strong>Roles &amp; responsabilidad:</strong> quién hace qué cuando importa.</li>
-                            <li><strong>Comunicación:</strong> mensajes claros y concisos — sin drama.</li>
-                        </ul>
-
-                        <p style="margin-top:0.7rem;">
-                            Uso estas metáforas en talleres y con directivos porque des-emocionalizan la complejidad sin trivializarla.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CONTACT ES -->
-            <section class="section" id="contact-es">
-                <div class="section-inner">
-                    <div class="section-header">
-                        <div class="section-kicker">Contacto</div>
-                        <h2 class="section-title">Dibujemos su mapa de situación</h2>
-                        <p class="section-sub">
-                            Ya sea una primera consulta, una segunda opinión estratégica o apoyo a un programa concreto:
-                            una conversación corta suele bastar para ver si y cómo puedo ayudar.
-                        </p>
-                    </div>
-
-                    <div class="contact-grid">
-
-                        <div class="contact-box">
-                            <p>
-                                Envíeme algunas líneas sobre su situación — idealmente tamaño de la empresa, sector,
-                                desafíos actuales y marco temporal aproximado.
-                            </p>
-
-                            <div class="contact-item">
-                                <div class="contact-label">Correo</div>
-                                <div class="contact-value">
-                                    <a href="mailto:joachim@reichel.digital">joachim@reichel.digital</a>
-                                </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-label">LinkedIn</div>
-                                <div class="contact-value">
-                                    <a href="https://www.linkedin.com/in/j-j-r/" target="_blank">Ver perfil</a>
-                                </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-label">Formato</div>
-                                <div class="contact-value">Videollamada o llamada telefónica — lo que prefiera.</div>
-                            </div>
-                        </div>
-
-                        <div class="contact-box">
-                            <p><strong>Propuesta para una primera llamada (30–45 min):</strong></p>
-                            <ul class="card-list">
-                                <li>Breve evaluación de su situación TI &amp; organizacional</li>
-                                <li>Mi visión sobre los mayores riesgos &amp; palancas</li>
-                                <li>Borrador de un enfoque pragmático</li>
-                                <li>Transparencia: dónde puedo ayudar — y dónde no</li>
-                            </ul>
-                            <p class="muted-inline">
-                                Sin venta, sin diapositivas.  
-                                Solo una mirada honesta a su situación — y un camino claro para avanzar.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <footer>
-            <div class="footer-inner">
-                <div>© <span class="year"></span> Joachim J. Reichel · Todos los derechos reservados.</div>
-                <div class="footer-links">
-                    <a href="#home-es">Volver arriba</a>
-                    <a href="#services-es">Servicios</a>
-                    <a href="#contact-es">Contacto</a>
-                </div>
-            </div>
-        </footer>
+<main id="top-en">
+  <section class="hero">
+    <div class="inner hero-grid">
+      <div>
+        <div class="kicker">Est. practice · Industry &amp; mid-market</div>
+        <h1 class="hero-headline">
+          Bringing order to IT. <em>Untangling complexity.</em> Keeping the company on course.
+        </h1>
+        <p class="hero-lede">
+          I support industrial and mid-sized companies as CIO and strategy advisor — from sprawling SAP landscapes to clear data and governance architectures. Pragmatism instead of PowerPoint theatre.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact-en" class="btn btn-primary">Request a conversation <span class="arrow">→</span></a>
+          <a href="#services-en" class="btn btn-ghost">View services</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <img src="portrait.jpg" alt="Joachim J. Reichel, portrait" />
+        <div class="portrait-caption">
+          <div class="portrait-meta-lines">
+            <span>Joachim J. Reichel</span>
+            <span>Hamburg · aboard the Viking</span>
+          </div>
+          <span>N 53°33′</span>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section class="creds">
+    <div class="creds-inner">
+      <div class="creds-label">What I stand for — in figures and focus areas</div>
+      <div class="creds-list">
+        <div class="cred"><div class="cred-num">25<sup>+</sup></div><div class="cred-label">Years of IT &amp; CIO experience</div></div>
+        <div class="cred"><div class="cred-num">SAP</div><div class="cred-label">Harmonisation &amp; governance</div></div>
+        <div class="cred"><div class="cred-num">M&amp;A</div><div class="cred-label">Carve-outs &amp; restructuring</div></div>
+        <div class="cred"><div class="cred-num">3</div><div class="cred-label">Working languages — DE · EN · ES</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services-en">
+    <div class="inner">
+      <div class="services-header">
+        <div>
+          <div class="kicker">Services</div>
+          <h2 class="section-title">What I help organisations solve</h2>
+        </div>
+        <p class="section-lede">
+          I come in where legacy IT, grown structures and silos block decisions. The goal: create calm in the system without endangering operations — and build a structure that holds.
+        </p>
+      </div>
+
+      <div class="services-list">
+        <article class="service">
+          <div class="service-num">01</div>
+          <div><h3 class="service-title">IT assessment &amp; target picture</h3></div>
+          <div class="service-body">
+            <p>A frank but constructive view of your IT landscape — including a clear roadmap of what should stay, what must go, and what needs to be built.</p>
+            <ul class="service-list">
+              <li>Inventory of systems, processes and governance</li>
+              <li>Making risks, technical debt and bottlenecks visible</li>
+              <li>Concrete target picture and action plan in plain language</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service-num">02</div>
+          <div><h3 class="service-title">Structuring SAP &amp; system landscapes</h3></div>
+          <div class="service-body">
+            <p>When multiple SAP systems, workarounds and Excel universes coexist, governance dissolves. Here I bring structure back in.</p>
+            <ul class="service-list">
+              <li>Harmonisation of SAP instances and core processes</li>
+              <li>Standardisation of master data and data governance</li>
+              <li>Preparation for carve-outs, M&amp;A or reorganisations</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service-num">03</div>
+          <div><h3 class="service-title">Interim CIO &amp; sparring partner</h3></div>
+          <div class="service-body">
+            <p>A neutral outside view, without internal factions. I translate between board, business, IT and workers' council — and keep the course.</p>
+            <ul class="service-list">
+              <li>Temporary CIO role or co-pilot for existing CIOs</li>
+              <li>Decision notes and clear options for board and advisory council</li>
+              <li>Support for critical programmes and transformations</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach-en">
+    <div class="inner approach-grid">
+      <div>
+        <div class="kicker">Projects &amp; patterns</div>
+        <h2 class="section-title">Typical engagements — what can be shown</h2>
+        <p class="section-lede">
+          Details stay confidential. What can be shown: the patterns I work in — and how IT construction sites become manageable systems again.
+        </p>
+        <ul class="approach-engagements">
+          <li><span class="tag">Assessment</span><span>Full IT assessment in an international industrial company with multiple SAP installations.</span></li>
+          <li><span class="tag">SAP</span><span>Design of a standardised SAP and process landscape for a heterogeneous group.</span></li>
+          <li><span class="tag">Data</span><span>Building master data governance across several locations.</span></li>
+          <li><span class="tag">Carve-out</span><span>Support of a carve-out with focus on IT interfaces and operational continuity.</span></li>
+        </ul>
+      </div>
+
+      <aside class="principles">
+        <h3>How I work</h3>
+        <p>I bring the calm of a skipper in rough seas — no drama, no show, but clear situation pictures, understandable options and consistent prioritisation.</p>
+        <ol class="principles-list">
+          <li><span class="pnum">i.</span><span><strong>Radically honest, but loyal.</strong> I name what doesn't hold — while working for the organisation, not against it.</span></li>
+          <li><span class="pnum">ii.</span><span><strong>Strategy and execution thought together.</strong> No slide circus that falls apart in operations.</span></li>
+          <li><span class="pnum">iii.</span><span><strong>Hands-on, but structured.</strong> From audit to execution — with or alongside existing teams and consultancies.</span></li>
+          <li><span class="pnum">iv.</span><span><strong>Decisions that hold.</strong> Understandable for board, business and IT alike.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about-en">
+    <div class="inner about-grid">
+      <div class="about-copy">
+        <div class="kicker">Profile</div>
+        <h2 class="section-title">Who stands behind the compass</h2>
+        <p>I have worked both in international corporations and in consulting. I know board rooms, shop floors and machine rooms — and I know that slides alone will neither land an IT nor a ship safely.</p>
+        <p>My strength is to connect technical, organisational and human aspects. Who has which interests? Where is the real blockage? Which decision truly brings relief?</p>
+        <p>Ideally, you leave a joint project with: a clear map of your IT, less complexity, more decision capability — and a team that understands why it follows this course.</p>
+      </div>
+      <aside class="about-card">
+        <h3>Key points</h3>
+        <ul class="about-list">
+          <li><span class="idx">01</span><span><strong>Long experience</strong> as CIO and IT leader in international environments.</span></li>
+          <li><span class="idx">02</span><span><strong>Focus</strong> on industry and manufacturing.</span></li>
+          <li><span class="idx">03</span><span><strong>SAP landscapes</strong>, master data and governance.</span></li>
+          <li><span class="idx">04</span><span><strong>Restructuring</strong>, carve-outs and transformations.</span></li>
+          <li><span class="idx">05</span><span><strong>Skipper &amp; owner</strong> of the ketch “Viking” — leadership under real weather conditions.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sailing" id="sailing-en">
+    <div class="inner sailing-grid">
+      <div>
+        <div class="kicker">Ketch Viking</div>
+        <h2 class="section-title">Sailing as a leadership and systems metaphor</h2>
+        <p class="sailing-intro">At sea you see in fast-forward what takes years in organisations: small flaws in structure, communication or accountability show up immediately in bad weather.</p>
+        <blockquote class="sailing-quote">A ship is a complex system — technology, crew, weather, navigation, materials. No component works in isolation. IT landscapes are no different.</blockquote>
+        <ul class="sailing-principles">
+          <li><span class="roman">i.</span><span><strong>Clear course instead of actionism.</strong> Clarify the situation first, then manoeuvre.</span></li>
+          <li><span class="roman">ii.</span><span><strong>Redundancy and robustness.</strong> Build systems that forgive mistakes.</span></li>
+          <li><span class="roman">iii.</span><span><strong>Roles and responsibility.</strong> Who does what when it gets serious?</span></li>
+          <li><span class="roman">iv.</span><span><strong>Communication.</strong> Concise, clear messages — without drama, without sugar-coating.</span></li>
+        </ul>
+      </div>
+
+      <div class="sailing-illus" aria-hidden="true">
+        <div class="sailing-illus-label"><span>Ketch “Viking”</span><span>Long-distance</span></div>
+        <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="rgba(250,248,244,0.55)" stroke-width="1">
+            <circle cx="150" cy="180" r="110" />
+            <circle cx="150" cy="180" r="75" stroke-opacity="0.4" />
+            <circle cx="150" cy="180" r="3" fill="rgba(250,248,244,0.55)" />
+            <line x1="150" y1="55" x2="150" y2="305" />
+            <line x1="25" y1="180" x2="275" y2="180" />
+            <line x1="62" y1="92" x2="238" y2="268" stroke-opacity="0.25" />
+            <line x1="238" y1="92" x2="62" y2="268" stroke-opacity="0.25" />
+          </g>
+          <polygon points="150,55 144,180 156,180" fill="rgba(183,132,76,0.85)" />
+          <polygon points="150,305 144,180 156,180" fill="rgba(250,248,244,0.35)" />
+          <text x="150" y="40" text-anchor="middle" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.7)" font-style="italic">N</text>
+          <text x="150" y="328" text-anchor="middle" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">S</text>
+          <text x="12" y="185" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">W</text>
+          <text x="282" y="185" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">E</text>
+        </svg>
+        <div class="sailing-illus-title">Course &amp; Clarity</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact-en">
+    <div class="inner">
+      <div class="kicker">Contact</div>
+      <h2 class="section-title">Let's draw your situation map</h2>
+      <p class="section-lede">Whether first sparring, a second opinion on a strategy or support for a concrete programme: a short, focused conversation is usually enough to see if and how I can help.</p>
+
+      <div class="contact-grid">
+        <div class="contact-primary">
+          <p>Send me a few lines about your situation — ideally company size, industry, current challenges and rough time frame.</p>
+          <div class="contact-row"><span class="contact-label">Email</span><span class="contact-value"><a href="mailto:joachim@reichel.digital">joachim@reichel.digital</a></span></div>
+          <div class="contact-row"><span class="contact-label">LinkedIn</span><span class="contact-value"><a href="https://www.linkedin.com/in/j-j-r/" target="_blank" rel="noopener">linkedin.com/in/j-j-r</a></span></div>
+          <div class="contact-row"><span class="contact-label">Format</span><span class="contact-value">Short video call or phone — whichever works best for you.</span></div>
+          <div class="contact-row"><span class="contact-label">Region</span><span class="contact-value">DACH, Europe-wide, selectively international.</span></div>
+        </div>
+
+        <div class="contact-aside">
+          <h3>Suggested first call · 30–45 min.</h3>
+          <ol>
+            <li>Brief assessment of your current IT and organisational situation.</li>
+            <li>My view on the biggest levers and risks.</li>
+            <li>Sketch of a pragmatic way forward.</li>
+            <li>Transparency — where I can help, and where not.</li>
+          </ol>
+          <p class="contact-close">No sales show, no slide deck. Just an honest view of your situation — and a proposal on how to move forward, with or without me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>© <span class="year"></span> JOACHIM J. REICHEL · REICHEL.DIGITAL</div>
+    <div class="footer-links">
+      <a href="#top-en">Back to top</a>
+      <a href="#services-en">Services</a>
+      <a href="#contact-en">Contact</a>
+    </div>
+  </div>
+</footer>
 </div>
+
+<!-- ==================== ES ==================== -->
+<div id="lang-es" class="lang" data-screen-label="ES">
+
+<header class="site-header">
+  <div class="nav">
+    <a href="#top-es" class="brand">
+      <span class="brand-mark">JJR</span>
+      <span>
+        <span class="brand-name">Joachim J. Reichel</span>
+        <span class="brand-role">CIO · Asesor de Estrategia TI</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services-es">Servicios</a>
+      <a href="#approach-es">Enfoque</a>
+      <a href="#about-es">Perfil</a>
+      <a href="#sailing-es">Viking</a>
+      <a href="#contact-es">Contacto</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button data-lang="de">DE</button><span class="sep">/</span>
+        <button data-lang="en">EN</button><span class="sep">/</span>
+        <button class="on" data-lang="es">ES</button>
+      </div>
+      <a href="#contact-es" class="nav-cta">Solicitar llamada</a>
+      <button class="nav-toggle" aria-label="Menú">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top-es">
+  <section class="hero">
+    <div class="inner hero-grid">
+      <div>
+        <div class="kicker">Práctica establecida · Industria &amp; medianas</div>
+        <h1 class="hero-headline">
+          Ordenar las estructuras TI. <em>Desenredar la complejidad.</em> Mantener la empresa en rumbo.
+        </h1>
+        <p class="hero-lede">
+          Acompaño a empresas industriales y medianas como CIO y asesor estratégico — desde paisajes SAP desbordados hasta arquitecturas claras de datos y gobernanza. Pragmatismo en lugar de teatro PowerPoint.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact-es" class="btn btn-primary">Solicitar una conversación <span class="arrow">→</span></a>
+          <a href="#services-es" class="btn btn-ghost">Ver servicios</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <img src="portrait.jpg" alt="Joachim J. Reichel, retrato" />
+        <div class="portrait-caption">
+          <div class="portrait-meta-lines">
+            <span>Joachim J. Reichel</span>
+            <span>Hamburgo · a bordo del Viking</span>
+          </div>
+          <span>N 53°33′</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="creds">
+    <div class="creds-inner">
+      <div class="creds-label">Por lo que me reconocen — en cifras y focos</div>
+      <div class="creds-list">
+        <div class="cred"><div class="cred-num">25<sup>+</sup></div><div class="cred-label">Años de experiencia TI &amp; CIO</div></div>
+        <div class="cred"><div class="cred-num">SAP</div><div class="cred-label">Armonización &amp; gobernanza</div></div>
+        <div class="cred"><div class="cred-num">M&amp;A</div><div class="cred-label">Carve-outs &amp; reestructuración</div></div>
+        <div class="cred"><div class="cred-num">3</div><div class="cred-label">Idiomas de trabajo — DE · EN · ES</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services-es">
+    <div class="inner">
+      <div class="services-header">
+        <div>
+          <div class="kicker">Servicios</div>
+          <h2 class="section-title">Lo que ayudo a resolver</h2>
+        </div>
+        <p class="section-lede">
+          Entro donde la TI heredada, las estructuras crecientes y los silos bloquean decisiones. El objetivo: dar calma al sistema sin arriesgar operaciones — y construir una estructura que perdure.
+        </p>
+      </div>
+
+      <div class="services-list">
+        <article class="service">
+          <div class="service-num">01</div>
+          <div><h3 class="service-title">Evaluación TI &amp; imagen objetivo</h3></div>
+          <div class="service-body">
+            <p>Un análisis sincero pero constructivo de su panorama TI — con una hoja de ruta clara sobre qué debe permanecer, qué debe eliminarse y qué debe construirse.</p>
+            <ul class="service-list">
+              <li>Inventario de sistemas, procesos y gobernanza</li>
+              <li>Riesgos, deuda técnica y cuellos de botella visibles</li>
+              <li>Imagen objetivo y plan de acción en lenguaje claro</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service-num">02</div>
+          <div><h3 class="service-title">Ordenar paisajes SAP &amp; sistemas</h3></div>
+          <div class="service-body">
+            <p>Cuando múltiples sistemas SAP, soluciones improvisadas y universos Excel coexisten, la gobernanza desaparece. Aquí restablezco el orden.</p>
+            <ul class="service-list">
+              <li>Armonización de instancias SAP y procesos centrales</li>
+              <li>Estandarización de datos maestros y gobernanza</li>
+              <li>Preparación para carve-outs, M&amp;A o reorganizaciones</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service-num">03</div>
+          <div><h3 class="service-title">CIO interino &amp; sparring partner</h3></div>
+          <div class="service-body">
+            <p>Una mirada externa y neutral. Traduzco entre la dirección, las áreas de negocio, TI y comité de empresa — manteniendo el rumbo.</p>
+            <ul class="service-list">
+              <li>Rol temporal de CIO o copiloto del CIO existente</li>
+              <li>Opciones claras y notas de decisión para la dirección</li>
+              <li>Acompañamiento de programas críticos y transformaciones</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach-es">
+    <div class="inner approach-grid">
+      <div>
+        <div class="kicker">Proyectos &amp; patrones</div>
+        <h2 class="section-title">Intervenciones típicas — lo que puede mostrarse</h2>
+        <p class="section-lede">
+          Los detalles permanecen confidenciales. Lo que puede mostrarse: los patrones en los que trabajo — y cómo las “obras” TI vuelven a ser sistemas gobernables.
+        </p>
+        <ul class="approach-engagements">
+          <li><span class="tag">Evaluación</span><span>Evaluación TI completa en una empresa industrial internacional con múltiples instalaciones SAP.</span></li>
+          <li><span class="tag">SAP</span><span>Diseño de un paisaje SAP y de procesos estandarizado para un grupo heterogéneo.</span></li>
+          <li><span class="tag">Datos</span><span>Creación de gobernanza de datos maestros en varias sedes.</span></li>
+          <li><span class="tag">Carve-out</span><span>Acompañamiento de un carve-out centrado en interfaces TI y continuidad operativa.</span></li>
+        </ul>
+      </div>
+
+      <aside class="principles">
+        <h3>Cómo trabajo</h3>
+        <p>Aporto la calma de un skipper en mar agitado — sin drama, sin espectáculo: imágenes claras de la situación, opciones comprensibles y priorización firme.</p>
+        <ol class="principles-list">
+          <li><span class="pnum">i.</span><span><strong>Honestidad radical, pero lealtad.</strong> Nombro lo que no se sostiene — mientras trabajo para la organización, no contra ella.</span></li>
+          <li><span class="pnum">ii.</span><span><strong>Estrategia y ejecución unidas.</strong> Sin circo de diapositivas que se desmorona en operaciones.</span></li>
+          <li><span class="pnum">iii.</span><span><strong>Práctico, pero estructurado.</strong> Desde el diagnóstico hasta la ejecución — con o junto a equipos y consultoras existentes.</span></li>
+          <li><span class="pnum">iv.</span><span><strong>Decisiones que perduran.</strong> Comprensibles para dirección, negocio y TI por igual.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about-es">
+    <div class="inner about-grid">
+      <div class="about-copy">
+        <div class="kicker">Perfil</div>
+        <h2 class="section-title">Quién está detrás de la brújula</h2>
+        <p>He trabajado tanto en corporaciones internacionales como en consultoría. Conozco salas de juntas, plantas de producción y salas de máquinas — y sé que las diapositivas por sí solas no llevan ni a una TI ni a un barco a puerto seguro.</p>
+        <p>Mi fortaleza es unir lo técnico, lo organizacional y lo humano. ¿Quién tiene qué intereses? ¿Dónde está el bloqueo real? ¿Qué decisión aporta alivio de verdad?</p>
+        <p>Idealmente, un proyecto conjunto termina con: un mapa claro de la TI, menos complejidad, mayor capacidad de decisión — y un equipo que comprende por qué sigue ese rumbo.</p>
+      </div>
+      <aside class="about-card">
+        <h3>Puntos clave</h3>
+        <ul class="about-list">
+          <li><span class="idx">01</span><span><strong>Amplia experiencia</strong> como CIO y líder TI en entornos internacionales.</span></li>
+          <li><span class="idx">02</span><span><strong>Enfoque</strong> en industria y manufactura.</span></li>
+          <li><span class="idx">03</span><span><strong>Paisajes SAP</strong>, datos maestros y gobernanza.</span></li>
+          <li><span class="idx">04</span><span><strong>Reestructuración</strong>, carve-outs y transformaciones.</span></li>
+          <li><span class="idx">05</span><span><strong>Skipper y propietario</strong> de la ketch “Viking” — liderazgo bajo condiciones reales.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sailing" id="sailing-es">
+    <div class="inner sailing-grid">
+      <div>
+        <div class="kicker">Ketch Viking</div>
+        <h2 class="section-title">La navegación como metáfora de liderazgo y sistemas</h2>
+        <p class="sailing-intro">En el mar se ve en modo acelerado lo que en las empresas tarda años: errores pequeños en estructura, comunicación o responsabilidad aparecen de inmediato con mal tiempo.</p>
+        <blockquote class="sailing-quote">Un barco es un sistema complejo — tecnología, tripulación, clima, navegación, materiales. Nada funciona aislado. Igual que en los paisajes TI.</blockquote>
+        <ul class="sailing-principles">
+          <li><span class="roman">i.</span><span><strong>Rumbo claro, no acción impulsiva.</strong> Primero aclarar la situación, luego maniobrar.</span></li>
+          <li><span class="roman">ii.</span><span><strong>Redundancia y robustez.</strong> Sistemas que perdonan errores.</span></li>
+          <li><span class="roman">iii.</span><span><strong>Roles y responsabilidad.</strong> Quién hace qué cuando importa.</span></li>
+          <li><span class="roman">iv.</span><span><strong>Comunicación.</strong> Mensajes claros y concisos — sin drama.</span></li>
+        </ul>
+      </div>
+
+      <div class="sailing-illus" aria-hidden="true">
+        <div class="sailing-illus-label"><span>Ketch “Viking”</span><span>Larga distancia</span></div>
+        <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="rgba(250,248,244,0.55)" stroke-width="1">
+            <circle cx="150" cy="180" r="110" />
+            <circle cx="150" cy="180" r="75" stroke-opacity="0.4" />
+            <circle cx="150" cy="180" r="3" fill="rgba(250,248,244,0.55)" />
+            <line x1="150" y1="55" x2="150" y2="305" />
+            <line x1="25" y1="180" x2="275" y2="180" />
+            <line x1="62" y1="92" x2="238" y2="268" stroke-opacity="0.25" />
+            <line x1="238" y1="92" x2="62" y2="268" stroke-opacity="0.25" />
+          </g>
+          <polygon points="150,55 144,180 156,180" fill="rgba(183,132,76,0.85)" />
+          <polygon points="150,305 144,180 156,180" fill="rgba(250,248,244,0.35)" />
+          <text x="150" y="40" text-anchor="middle" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.7)" font-style="italic">N</text>
+          <text x="150" y="328" text-anchor="middle" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">S</text>
+          <text x="12" y="185" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">W</text>
+          <text x="282" y="185" font-family="Source Serif 4, serif" font-size="14" fill="rgba(250,248,244,0.5)" font-style="italic">E</text>
+        </svg>
+        <div class="sailing-illus-title">Rumbo &amp; Claridad</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact-es">
+    <div class="inner">
+      <div class="kicker">Contacto</div>
+      <h2 class="section-title">Dibujemos su mapa de situación</h2>
+      <p class="section-lede">Ya sea una primera consulta, una segunda opinión estratégica o apoyo a un programa concreto: una conversación corta suele bastar para ver si y cómo puedo ayudar.</p>
+
+      <div class="contact-grid">
+        <div class="contact-primary">
+          <p>Envíeme algunas líneas sobre su situación — idealmente tamaño de la empresa, sector, desafíos actuales y marco temporal.</p>
+          <div class="contact-row"><span class="contact-label">Correo</span><span class="contact-value"><a href="mailto:joachim@reichel.digital">joachim@reichel.digital</a></span></div>
+          <div class="contact-row"><span class="contact-label">LinkedIn</span><span class="contact-value"><a href="https://www.linkedin.com/in/j-j-r/" target="_blank" rel="noopener">linkedin.com/in/j-j-r</a></span></div>
+          <div class="contact-row"><span class="contact-label">Formato</span><span class="contact-value">Videollamada corta o teléfono — según le convenga.</span></div>
+          <div class="contact-row"><span class="contact-label">Región</span><span class="contact-value">DACH, Europa, selectivamente internacional.</span></div>
+        </div>
+
+        <div class="contact-aside">
+          <h3>Propuesta para la primera llamada · 30–45 min.</h3>
+          <ol>
+            <li>Breve evaluación de su situación actual TI y organizacional.</li>
+            <li>Mi visión de las mayores palancas y riesgos.</li>
+            <li>Esbozo de un enfoque pragmático a seguir.</li>
+            <li>Transparencia — dónde puedo ayudar y dónde no.</li>
+          </ol>
+          <p class="contact-close">Sin espectáculo de ventas, sin diapositivas. Solo una mirada honesta a su situación — y una propuesta para avanzar, conmigo o sin mí.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>© <span class="year"></span> JOACHIM J. REICHEL · REICHEL.DIGITAL</div>
+    <div class="footer-links">
+      <a href="#top-es">Volver arriba</a>
+      <a href="#services-es">Servicios</a>
+      <a href="#contact-es">Contacto</a>
+    </div>
+  </div>
+</footer>
+</div>
+
 <script>
-    // Jahr in allen Footern setzen
-    document.querySelectorAll('.year').forEach(el => {
-        el.textContent = new Date().getFullYear();
+  // Year
+  document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+
+  // Sprache wechseln
+  function setLanguage(lang) {
+    const valid = ['de', 'en', 'es'];
+    if (!valid.includes(lang)) lang = 'de';
+    document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+    const target = document.getElementById('lang-' + lang);
+    if (target) target.classList.add('active');
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('reichel-lang', lang); } catch (e) {}
+  }
+
+  // Initialer Stand aus localStorage
+  try {
+    const saved = localStorage.getItem('reichel-lang');
+    if (saved && saved !== 'de') setLanguage(saved);
+  } catch (e) {}
+
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
+  // Mobile nav toggle
+  document.querySelectorAll('.nav-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const links = btn.closest('.nav').querySelector('.nav-links');
+      if (links) links.classList.toggle('open');
     });
+  });
 
-    function setLanguage(lang) {
-        const blocks = ['de', 'en', 'es'];
-
-        blocks.forEach(code => {
-            const el = document.getElementById('lang-' + code);
-            if (el) el.classList.remove('active');
-        });
-
-        const activeBlock = document.getElementById('lang-' + lang);
-        if (activeBlock) activeBlock.classList.add('active');
-
-        // Buttons visuell umschalten
-        document.querySelectorAll('.nav-lang-switcher button').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.textContent.trim() === lang.toUpperCase()) {
-                btn.classList.add('active');
-            }
-        });
-
-        // Offene mobile Navs schließen
-        document.querySelectorAll('.nav-links').forEach(nl => nl.classList.remove('open'));
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Mobile Navigation
-    document.querySelectorAll('.nav-toggle').forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const navLinks = toggle.closest('.nav').querySelector('.nav-links');
-            if (navLinks) navLinks.classList.toggle('open');
-        });
+  // Menü-Link-Klicks schließen Mobile-Nav
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      a.closest('.nav-links')?.classList.remove('open');
     });
-
-    // Browsersprache erkennen, Fallback Deutsch
-    const browserLang = (navigator.language || '').split('-')[0].toLowerCase();
-    const supported = ['de', 'en', 'es'];
-    setLanguage(supported.includes(browserLang) ? browserLang : 'de');
+  });
 </script>
 </body>
 </html>
