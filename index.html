@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Joachim J. Reichel — CIO und IT-Strategieberater für Industrie und Mittelstand. IT-Restrukturierung, SAP-Harmonisierung, Daten & Governance. Pragmatisch, klar, umsetzbar." />
 <link rel="canonical" href="https://reichel.digital/" />
-<link rel="alternate" hreflang="de" href="https://reichel.digital/" />
-<link rel="alternate" hreflang="en" href="https://reichel.digital/" />
-<link rel="alternate" hreflang="es" href="https://reichel.digital/" />
+<link rel="alternate" hreflang="de" href="https://reichel.digital/?lang=de" />
+<link rel="alternate" hreflang="en" href="https://reichel.digital/?lang=en" />
+<link rel="alternate" hreflang="es" href="https://reichel.digital/?lang=es" />
 <link rel="alternate" hreflang="x-default" href="https://reichel.digital/" />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <meta property="og:type" content="website" />
@@ -23,9 +23,7 @@
 <meta name="twitter:title" content="Joachim J. Reichel — CIO & IT-Strategieberater" />
 <meta name="twitter:description" content="IT-Strukturen ordnen, Komplexität entwirren, Unternehmen auf Kurs bringen." />
 <meta name="twitter:image" content="https://reichel.digital/portrait.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="fonts.css" />
 <link rel="stylesheet" href="styles.css" />
 <script type="application/ld+json">
 {
@@ -65,9 +63,9 @@
     </nav>
     <div class="nav-right">
       <div class="lang-switch" role="group" aria-label="Sprache">
-        <button class="on" data-lang="de">DE</button><span class="sep">/</span>
-        <button data-lang="en">EN</button><span class="sep">/</span>
-        <button data-lang="es">ES</button>
+        <button class="on" type="button" data-lang="de" aria-pressed="true">DE</button><span class="sep">/</span>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button><span class="sep">/</span>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
       </div>
       <a href="#contact-de" class="nav-cta">Gespräch anfragen</a>
       <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="nav-links-de">☰</button>
@@ -369,9 +367,9 @@
     </nav>
     <div class="nav-right">
       <div class="lang-switch" role="group" aria-label="Language">
-        <button data-lang="de">DE</button><span class="sep">/</span>
-        <button class="on" data-lang="en">EN</button><span class="sep">/</span>
-        <button data-lang="es">ES</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button><span class="sep">/</span>
+        <button class="on" type="button" data-lang="en" aria-pressed="true">EN</button><span class="sep">/</span>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
       </div>
       <a href="#contact-en" class="nav-cta">Schedule a call</a>
       <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links-en">☰</button>
@@ -630,9 +628,9 @@
     </nav>
     <div class="nav-right">
       <div class="lang-switch" role="group" aria-label="Idioma">
-        <button data-lang="de">DE</button><span class="sep">/</span>
-        <button data-lang="en">EN</button><span class="sep">/</span>
-        <button class="on" data-lang="es">ES</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button><span class="sep">/</span>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button><span class="sep">/</span>
+        <button class="on" type="button" data-lang="es" aria-pressed="true">ES</button>
       </div>
       <a href="#contact-es" class="nav-cta">Solicitar llamada</a>
       <button class="nav-toggle" type="button" aria-label="Menú" aria-expanded="false" aria-controls="nav-links-es">☰</button>
@@ -874,46 +872,121 @@
   // Year
   document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
 
-  // Sprache wechseln
-  function setLanguage(lang) {
-    const valid = ['de', 'en', 'es'];
-    if (!valid.includes(lang)) lang = 'de';
+  const VALID_LANGS = ['de', 'en', 'es'];
+
+  function updateLangButtons(lang) {
+    document.querySelectorAll('.lang-switch button[data-lang]').forEach(btn => {
+      const active = btn.dataset.lang === lang;
+      btn.classList.toggle('on', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function setLanguage(lang, { updateUrl = true } = {}) {
+    if (!VALID_LANGS.includes(lang)) lang = 'de';
     document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
     const target = document.getElementById('lang-' + lang);
     if (target) target.classList.add('active');
     document.documentElement.lang = lang;
     const skip = document.querySelector('.skip-link');
     if (skip) skip.setAttribute('href', '#top-' + lang);
+    updateLangButtons(lang);
     try { localStorage.setItem('reichel-lang', lang); } catch (e) {}
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (lang === 'de') url.searchParams.delete('lang');
+      else url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+    }
   }
 
-  // Initialer Stand aus localStorage
-  try {
-    const saved = localStorage.getItem('reichel-lang');
-    if (saved && saved !== 'de') setLanguage(saved);
-  } catch (e) {}
+  // Initial language: URL param > localStorage > default DE
+  (function initLanguage() {
+    const fromUrl = new URLSearchParams(window.location.search).get('lang');
+    if (fromUrl && VALID_LANGS.includes(fromUrl)) {
+      setLanguage(fromUrl, { updateUrl: false });
+      return;
+    }
+    try {
+      const saved = localStorage.getItem('reichel-lang');
+      if (saved && saved !== 'de') setLanguage(saved, { updateUrl: false });
+      else updateLangButtons('de');
+    } catch (e) {
+      updateLangButtons('de');
+    }
+  })();
 
-  document.querySelectorAll('.lang-switch button').forEach(btn => {
+  document.querySelectorAll('.lang-switch button[data-lang]').forEach(btn => {
     btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
   });
 
-  // Mobile nav toggle
+  function closeMobileNav(nav) {
+    const links = nav.querySelector('.nav-links');
+    const toggle = nav.querySelector('.nav-toggle');
+    if (!links || !toggle) return;
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function getMobileNavFocusables(nav) {
+    const links = nav.querySelector('.nav-links');
+    if (!links?.classList.contains('open')) return [];
+    return [...links.querySelectorAll('a'), nav.querySelector('.nav-toggle')].filter(Boolean);
+  }
+
+  // Mobile nav toggle with focus trap
   document.querySelectorAll('.nav-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
-      const links = btn.closest('.nav').querySelector('.nav-links');
+      const nav = btn.closest('.nav');
+      const links = nav?.querySelector('.nav-links');
       if (!links) return;
       const open = links.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) links.querySelector('a')?.focus();
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      const nav = btn.closest('.nav');
+      const focusables = getMobileNavFocusables(nav);
+      if (!focusables.length) return;
+
+      if (e.key === 'Escape') {
+        closeMobileNav(nav);
+        btn.focus();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      const idx = focusables.indexOf(document.activeElement);
+      if (idx === -1) return;
+      e.preventDefault();
+      const next = e.shiftKey
+        ? focusables[(idx - 1 + focusables.length) % focusables.length]
+        : focusables[(idx + 1) % focusables.length];
+      next.focus();
     });
   });
 
-  // Menü-Link-Klicks schließen Mobile-Nav
+  document.querySelectorAll('.nav-links').forEach(links => {
+    links.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const nav = links.closest('.nav');
+      const focusables = getMobileNavFocusables(nav);
+      if (!focusables.length) return;
+      const idx = focusables.indexOf(document.activeElement);
+      if (idx === -1) return;
+      e.preventDefault();
+      const next = e.shiftKey
+        ? focusables[(idx - 1 + focusables.length) % focusables.length]
+        : focusables[(idx + 1) % focusables.length];
+      next.focus();
+    });
+  });
+
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => {
-      const links = a.closest('.nav-links');
-      links?.classList.remove('open');
-      const toggle = links?.closest('.nav')?.querySelector('.nav-toggle');
-      toggle?.setAttribute('aria-expanded', 'false');
+      const nav = a.closest('.nav');
+      if (nav) closeMobileNav(nav);
     });
   });
 </script>
