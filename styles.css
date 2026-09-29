@@ -9,10 +9,11 @@
   --bg-deep:       #f3efe7;
   --ink:           #0f1e2e;
   --ink-soft:      #2a3a4d;
-  --muted:         #6b7581;
+  --muted:         #5f6975;
   --line:          #d9d3c7;
   --line-strong:   #1c2a3a;
-  --accent:        oklch(55% 0.09 60);   /* gedämpftes Messing */
+  --accent:        oklch(52% 0.09 60);   /* gedämpftes Messing */
+  --accent-bright: oklch(72% 0.09 60);   /* Messing auf dunklem Grund */
   --accent-soft:   oklch(55% 0.09 60 / 0.10);
 
   /* Typo */
@@ -678,7 +679,7 @@ h1, h2, h3 {
   font-family: var(--serif);
   font-style: italic;
   font-size: 0.95rem;
-  color: var(--accent);
+  color: var(--accent-bright);
   min-width: 1.2rem;
 }
 
@@ -826,7 +827,7 @@ h1, h2, h3 {
 .sailing-principles .roman {
   font-family: var(--serif);
   font-style: italic;
-  color: var(--accent);
+  color: var(--accent-bright);
   min-width: 1.8rem;
   font-size: 0.95rem;
 }
@@ -1027,8 +1028,11 @@ h1, h2, h3 {
 
   .hero { padding-bottom: 4rem; }
 
-  /* Einspaltig: Porträt begrenzen statt bildschirmfüllend */
-  .portrait-wrap { max-width: 26rem; }
+  /* Einspaltig: Porträt und Kompass begrenzen statt bildschirmfüllend */
+  .portrait-wrap,
+  .sailing-illus { max-width: 26rem; }
+
+  .services-header { gap: 1.25rem; margin-bottom: 2.5rem; }
 
   .creds-inner {
     grid-template-columns: 1fr;
