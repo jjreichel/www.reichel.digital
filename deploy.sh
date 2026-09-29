@@ -13,6 +13,7 @@ aws s3 sync "$ROOT" "s3://${BUCKET}" \
   --exclude ".claude/*" \
   --exclude "graphify-out/*" \
   --exclude ".DS_Store" \
+  --exclude ".gitignore" \
   --exclude "deploy.sh" \
   --exclude "invalidate-cloudfront.sh"
 
